@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.TrainingSportsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.TrainingSportsInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_training_plane_id" property="admsTrainingPlaneId" jdbcType="VARCHAR" />
+    <result column="adms_athlete_id" property="admsAthleteId" jdbcType="VARCHAR" />
+    <result column="heart_rate" property="heartRate" jdbcType="VARCHAR" />
+    <result column="distance" property="distance" jdbcType="VARCHAR" />
+    <result column="accelerated_speed" property="acceleratedSpeed" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, modify_time, adms_training_plane_id, adms_athlete_id, heart_rate, 
+    distance, accelerated_speed
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_training_sports_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_training_sports_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.TrainingSportsInfo" >
+    insert into adms_training_sports_info (id, create_time, modify_time, 
+      adms_training_plane_id, adms_athlete_id, heart_rate, 
+      distance, accelerated_speed)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsTrainingPlaneId,jdbcType=VARCHAR}, #{admsAthleteId,jdbcType=VARCHAR}, #{heartRate,jdbcType=VARCHAR}, 
+      #{distance,jdbcType=VARCHAR}, #{acceleratedSpeed,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.TrainingSportsInfo" >
+    insert into adms_training_sports_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        adms_training_plane_id,
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id,
+      </if>
+      <if test="heartRate != null" >
+        heart_rate,
+      </if>
+      <if test="distance != null" >
+        distance,
+      </if>
+      <if test="acceleratedSpeed != null" >
+        accelerated_speed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null" >
+        #{heartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        #{distance,jdbcType=VARCHAR},
+      </if>
+      <if test="acceleratedSpeed != null" >
+        #{acceleratedSpeed,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.TrainingSportsInfo" >
+    update adms_training_sports_info
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        adms_training_plane_id = #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null" >
+        heart_rate = #{heartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null" >
+        distance = #{distance,jdbcType=VARCHAR},
+      </if>
+      <if test="acceleratedSpeed != null" >
+        accelerated_speed = #{acceleratedSpeed,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.TrainingSportsInfo" >
+    update adms_training_sports_info
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_training_plane_id = #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      heart_rate = #{heartRate,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=VARCHAR},
+      accelerated_speed = #{acceleratedSpeed,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

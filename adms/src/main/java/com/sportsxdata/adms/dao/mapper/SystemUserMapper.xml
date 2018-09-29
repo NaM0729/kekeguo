@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.SystemUserMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.SystemUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_system_usercol" property="admsSystemUsercol" jdbcType="VARCHAR" />
+    <collection property="systemRoles" ofType="com.sportsxdata.adms.model.SystemRole">
+      <id property="id" column="rid"></id>
+      <result property="roleName" column="role_name"></result>
+      <result property="roleCode" column="role_code"></result>
+      <result property="createTime" column="create_time"></result>
+      <result property="modifyTime" column="modify_time"></result>
+
+      <!--<collection property="systemMenus" ofType="com.sportsxdata.adms.model.SystemMenu">-->
+        <!--<id property="id" column="id"></id>-->
+        <!--<result property="name" column="name"></result>-->
+        <!--<result property="url" column="url"></result>-->
+        <!--<result property="parentId" column="parent_id"></result>-->
+        <!--<result property="parentPath" column="parent_path"></result>-->
+        <!--<result property="leaf" column="leaf"></result>-->
+        <!--<result property="createTime" column="create_time"></result>-->
+        <!--<result property="modifyTime" column="modify_time"></result>-->
+      <!--</collection>-->
+    </collection>
+    <collection property="systemMenus" ofType="com.sportsxdata.adms.model.SystemMenu">
+      <id property="id" column="mid"></id>
+      <result property="name" column="name"></result>
+      <result property="url" column="url"></result>
+      <result property="parentId" column="parent_id"></result>
+      <result property="parentPath" column="parent_path"></result>
+      <result property="leaf" column="leaf"></result>
+      <result property="createTime" column="create_time"></result>
+      <result property="modifyTime" column="modify_time"></result>
+      <result property="iconUrl" column="icon_url"></result>
+    </collection>
+    <collection property="systemPermissions" ofType="com.sportsxdata.adms.model.SystemPermission">
+      <id property="id" column="pid"></id>
+      <result property="permissionName" column="permission_name"></result>
+      <result property="permissionCode" column="permission_Code"></result>
+      <result property="createTime" column="create_time"></result>
+      <result property="modifyTime" column="modify_time"></result>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, salt, create_time, modify_time, adms_system_usercol
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_system_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_system_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.SystemUser" >
+    insert into adms_system_user (id, username, password, 
+      salt, create_time, modify_time, 
+      adms_system_usercol)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsSystemUsercol,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.SystemUser" >
+    insert into adms_system_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsSystemUsercol != null" >
+        adms_system_usercol,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsSystemUsercol != null" >
+        #{admsSystemUsercol,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.SystemUser" >
+    update adms_system_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsSystemUsercol != null" >
+        adms_system_usercol = #{admsSystemUsercol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.SystemUser" >
+    update adms_system_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_system_usercol = #{admsSystemUsercol,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectUserByName" parameterType="String" resultMap="BaseResultMap" >
+    SELECT u.*,r.id as rid,r.*,p.id as pid,p.*,m.id as mid, m.* FROM
+        adms_system_user u
+    inner join
+        adms_user_role_relation ur on ur.system_user_id = u.id
+    inner join
+        adms_system_role r on r.id = ur.system_role_id
+    inner join
+        adms_role_permission_relation rp on rp.system_role_id = r.id
+    inner join
+        adms_system_permission p on rp.system_permission_id = p.id
+    inner join
+        adms_role_menu_relation mr on mr.adms_system_role_id = r.id
+    inner join
+        adms_system_menu m on  m.id = mr.adms_system_menu_id
+    WHERE u.username=#{username}
+    ORDER BY m.id
+  </select>
+
+
+</mapper>

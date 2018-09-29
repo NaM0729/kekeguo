@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.AttendanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.AttendanceLog" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="adms_athlete_id" property="admsAthleteId" jdbcType="VARCHAR" />
+    <result column="adms_attendance_id" property="admsAttendanceId" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reason, adms_athlete_id, adms_attendance_id, start_time, end_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_attendance_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_attendance_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.AttendanceLog" >
+    insert into adms_attendance_log (id, reason, adms_athlete_id, 
+      adms_attendance_id, start_time, end_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{admsAthleteId,jdbcType=VARCHAR}, 
+      #{admsAttendanceId,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.AttendanceLog" >
+    insert into adms_attendance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id,
+      </if>
+      <if test="admsAttendanceId != null" >
+        adms_attendance_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAttendanceId != null" >
+        #{admsAttendanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.AttendanceLog" >
+    update adms_attendance_log
+    <set >
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAttendanceId != null" >
+        adms_attendance_id = #{admsAttendanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.AttendanceLog" >
+    update adms_attendance_log
+    set reason = #{reason,jdbcType=VARCHAR},
+      adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      adms_attendance_id = #{admsAttendanceId,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByAthleteIdAndAttendanceTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from adms_attendance_log
+    where adms_athlete_id = #{athleteId,jdbcType=VARCHAR} and start_time = #{startTime,jdbcType=TIMESTAMP}
+    and end_time = #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
+
+  <!--通过教练ID查看所有运动员请假情况-->
+  <select id="getAttendanceLogByCoachId" resultType="com.sportsxdata.adms.model.AttendanceLogReasultByCoach">
+    select a.name as name,aa.name as statue,start_time as startTime
+      ,end_time as endTime,reason as remarks,TIMESTAMPDIFF(HOUR,start_time,end_time) as lengthTime
+    from adms_attendance_log l,adms_athlete a,adms_attendance aa
+    where 1=1
+    and a.adms_coach_id = #{coachId}
+    and a.id = l.adms_athlete_id
+    and l.adms_attendance_id = aa.id
+    order by start_time desc,convert(a.name using gbk) ASC
+  </select>
+
+  <!--通过教练ID查看所有运动员列表，含请假情况，针对添加日常训练菜单-->
+  <select id="getAthleticsByCoach" resultType="java.util.Map">
+    select a.name as name ,a.avatar as avatar
+      ,(select count(1) from adms_attendance_log l where l.adms_athlete_id = a.id and l.end_time >= now()) as statue
+    from adms_athlete a
+    where 1=1
+    and a.adms_coach_id = #{coachId}
+    order by convert(a.name using gbk) ASC
+  </select>
+</mapper>

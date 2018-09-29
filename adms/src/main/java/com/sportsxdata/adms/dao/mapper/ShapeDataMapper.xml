@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.ShapeDataMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.ShapeData" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="adms_athlete_id" property="admsAthleteId" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="measure_time" property="measureTime" jdbcType="TIMESTAMP" />
+    <result column="athlete_height" property="athleteHeight" jdbcType="VARCHAR" />
+    <result column="athlete_weight" property="athleteWeight" jdbcType="VARCHAR" />
+    <result column="athlete_upper_limb_length" property="athleteUpperLimbLength" jdbcType="VARCHAR" />
+    <result column="athlete_lower_extremity_length" property="athleteLowerExtremityLength" jdbcType="VARCHAR" />
+    <result column="athlete_forearm_length" property="athleteForearmLength" jdbcType="VARCHAR" />
+    <result column="xiao_tui_chang" property="xiaoTuiChang" jdbcType="VARCHAR" />
+    <result column="shang_bi_wei" property="shangBiWei" jdbcType="VARCHAR" />
+    <result column="da_tui_wei" property="daTuiWei" jdbcType="VARCHAR" />
+    <result column="athlete_bust" property="athleteBust" jdbcType="VARCHAR" />
+    <result column="xiao_tui_wei" property="xiaoTuiWei" jdbcType="VARCHAR" />
+    <result column="athlete_hipline" property="athleteHipline" jdbcType="VARCHAR" />
+    <result column="athlete_waistline" property="athleteWaistline" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, adms_athlete_id, modify_time, create_time, measure_time, athlete_height, athlete_weight, 
+    athlete_upper_limb_length, athlete_lower_extremity_length, athlete_forearm_length, 
+    xiao_tui_chang, shang_bi_wei, da_tui_wei, athlete_bust, xiao_tui_wei, athlete_hipline, 
+    athlete_waistline
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_shape_data
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_shape_data
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.ShapeData" >
+    insert into adms_shape_data (id, adms_athlete_id, modify_time, 
+      create_time, measure_time, athlete_height, 
+      athlete_weight, athlete_upper_limb_length, 
+      athlete_lower_extremity_length, athlete_forearm_length, 
+      xiao_tui_chang, shang_bi_wei, da_tui_wei, 
+      athlete_bust, xiao_tui_wei, athlete_hipline, 
+      athlete_waistline)
+    values (#{id,jdbcType=VARCHAR}, #{admsAthleteId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{measureTime,jdbcType=TIMESTAMP}, #{athleteHeight,jdbcType=VARCHAR}, 
+      #{athleteWeight,jdbcType=VARCHAR}, #{athleteUpperLimbLength,jdbcType=VARCHAR}, 
+      #{athleteLowerExtremityLength,jdbcType=VARCHAR}, #{athleteForearmLength,jdbcType=VARCHAR}, 
+      #{xiaoTuiChang,jdbcType=VARCHAR}, #{shangBiWei,jdbcType=VARCHAR}, #{daTuiWei,jdbcType=VARCHAR}, 
+      #{athleteBust,jdbcType=VARCHAR}, #{xiaoTuiWei,jdbcType=VARCHAR}, #{athleteHipline,jdbcType=VARCHAR}, 
+      #{athleteWaistline,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.ShapeData" >
+    insert into adms_shape_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="measureTime != null" >
+        measure_time,
+      </if>
+      <if test="athleteHeight != null" >
+        athlete_height,
+      </if>
+      <if test="athleteWeight != null" >
+        athlete_weight,
+      </if>
+      <if test="athleteUpperLimbLength != null" >
+        athlete_upper_limb_length,
+      </if>
+      <if test="athleteLowerExtremityLength != null" >
+        athlete_lower_extremity_length,
+      </if>
+      <if test="athleteForearmLength != null" >
+        athlete_forearm_length,
+      </if>
+      <if test="xiaoTuiChang != null" >
+        xiao_tui_chang,
+      </if>
+      <if test="shangBiWei != null" >
+        shang_bi_wei,
+      </if>
+      <if test="daTuiWei != null" >
+        da_tui_wei,
+      </if>
+      <if test="athleteBust != null" >
+        athlete_bust,
+      </if>
+      <if test="xiaoTuiWei != null" >
+        xiao_tui_wei,
+      </if>
+      <if test="athleteHipline != null" >
+        athlete_hipline,
+      </if>
+      <if test="athleteWaistline != null" >
+        athlete_waistline,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="measureTime != null" >
+        #{measureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="athleteHeight != null" >
+        #{athleteHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteWeight != null" >
+        #{athleteWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteUpperLimbLength != null" >
+        #{athleteUpperLimbLength,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteLowerExtremityLength != null" >
+        #{athleteLowerExtremityLength,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteForearmLength != null" >
+        #{athleteForearmLength,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoTuiChang != null" >
+        #{xiaoTuiChang,jdbcType=VARCHAR},
+      </if>
+      <if test="shangBiWei != null" >
+        #{shangBiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="daTuiWei != null" >
+        #{daTuiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteBust != null" >
+        #{athleteBust,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoTuiWei != null" >
+        #{xiaoTuiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteHipline != null" >
+        #{athleteHipline,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteWaistline != null" >
+        #{athleteWaistline,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.ShapeData" >
+    update adms_shape_data
+    <set >
+      <if test="admsAthleteId != null" >
+        adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="measureTime != null" >
+        measure_time = #{measureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="athleteHeight != null" >
+        athlete_height = #{athleteHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteWeight != null" >
+        athlete_weight = #{athleteWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteUpperLimbLength != null" >
+        athlete_upper_limb_length = #{athleteUpperLimbLength,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteLowerExtremityLength != null" >
+        athlete_lower_extremity_length = #{athleteLowerExtremityLength,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteForearmLength != null" >
+        athlete_forearm_length = #{athleteForearmLength,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoTuiChang != null" >
+        xiao_tui_chang = #{xiaoTuiChang,jdbcType=VARCHAR},
+      </if>
+      <if test="shangBiWei != null" >
+        shang_bi_wei = #{shangBiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="daTuiWei != null" >
+        da_tui_wei = #{daTuiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteBust != null" >
+        athlete_bust = #{athleteBust,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoTuiWei != null" >
+        xiao_tui_wei = #{xiaoTuiWei,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteHipline != null" >
+        athlete_hipline = #{athleteHipline,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteWaistline != null" >
+        athlete_waistline = #{athleteWaistline,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.ShapeData" >
+    update adms_shape_data
+    set adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      measure_time = #{measureTime,jdbcType=TIMESTAMP},
+      athlete_height = #{athleteHeight,jdbcType=VARCHAR},
+      athlete_weight = #{athleteWeight,jdbcType=VARCHAR},
+      athlete_upper_limb_length = #{athleteUpperLimbLength,jdbcType=VARCHAR},
+      athlete_lower_extremity_length = #{athleteLowerExtremityLength,jdbcType=VARCHAR},
+      athlete_forearm_length = #{athleteForearmLength,jdbcType=VARCHAR},
+      xiao_tui_chang = #{xiaoTuiChang,jdbcType=VARCHAR},
+      shang_bi_wei = #{shangBiWei,jdbcType=VARCHAR},
+      da_tui_wei = #{daTuiWei,jdbcType=VARCHAR},
+      athlete_bust = #{athleteBust,jdbcType=VARCHAR},
+      xiao_tui_wei = #{xiaoTuiWei,jdbcType=VARCHAR},
+      athlete_hipline = #{athleteHipline,jdbcType=VARCHAR},
+      athlete_waistline = #{athleteWaistline,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

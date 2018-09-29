@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.TestActionRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.TestActionRelation" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_action_id" property="admsActionId" jdbcType="VARCHAR" />
+    <result column="adms_test_id" property="admsTestId" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, modify_time, adms_action_id, adms_test_id, score, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_test_action_relation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_test_action_relation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.TestActionRelation" >
+    insert into adms_test_action_relation (id, create_time, modify_time, 
+      adms_action_id, adms_test_id, score, 
+      grade)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsActionId,jdbcType=VARCHAR}, #{admsTestId,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.TestActionRelation" >
+    insert into adms_test_action_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsActionId != null" >
+        adms_action_id,
+      </if>
+      <if test="admsTestId != null" >
+        adms_test_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsActionId != null" >
+        #{admsActionId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsTestId != null" >
+        #{admsTestId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.TestActionRelation" >
+    update adms_test_action_relation
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsActionId != null" >
+        adms_action_id = #{admsActionId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsTestId != null" >
+        adms_test_id = #{admsTestId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.TestActionRelation" >
+    update adms_test_action_relation
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_action_id = #{admsActionId,jdbcType=VARCHAR},
+      adms_test_id = #{admsTestId,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

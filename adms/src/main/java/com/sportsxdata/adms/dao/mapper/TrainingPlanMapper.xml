@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.TrainingPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.TrainingPlan" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="traning_theme" property="traningTheme" jdbcType="INTEGER" />
+    <result column="traning_start_time" property="traningStartTime" jdbcType="TIMESTAMP" />
+    <result column="traning_end_time" property="traningEndTime" jdbcType="TIMESTAMP" />
+    <result column="traning_site" property="traningSite" jdbcType="VARCHAR" />
+    <result column="traning_remark" property="traningRemark" jdbcType="VARCHAR" />
+    <result column="traning_target" property="traningTarget" jdbcType="VARCHAR" />
+    <result column="traning_team_name" property="traningTeamName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="coach_id" property="coachId" jdbcType="VARCHAR" />
+    <result column="traning_stage" property="traningStage" jdbcType="VARCHAR" />
+    <result column="main_plan_id" property="mainPlanId" jdbcType="VARCHAR" />
+    <result column="belong_coach" property="belongCoach" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, traning_theme, traning_start_time, traning_end_time, traning_site, traning_remark, 
+    traning_target, traning_team_name, create_time, modify_time, coach_id, traning_stage, 
+    main_plan_id,belong_coach
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_training_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_training_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.TrainingPlan" >
+    insert into adms_training_plan (id, traning_theme, traning_start_time, 
+      traning_end_time, traning_site, traning_remark, 
+      traning_target, traning_team_name, create_time, 
+      modify_time, coach_id, traning_stage, 
+      main_plan_id,belong_coach)
+    values (#{id,jdbcType=VARCHAR}, #{traningTheme,jdbcType=INTEGER}, #{traningStartTime,jdbcType=TIMESTAMP}, 
+      #{traningEndTime,jdbcType=TIMESTAMP}, #{traningSite,jdbcType=VARCHAR}, #{traningRemark,jdbcType=VARCHAR}, 
+      #{traningTarget,jdbcType=VARCHAR}, #{traningTeamName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{coachId,jdbcType=VARCHAR}, #{traningStage,jdbcType=VARCHAR}, 
+      #{mainPlanId,jdbcType=VARCHAR},#{belongCoach,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.TrainingPlan" >
+    insert into adms_training_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="traningTheme != null" >
+        traning_theme,
+      </if>
+      <if test="traningStartTime != null" >
+        traning_start_time,
+      </if>
+      <if test="traningEndTime != null" >
+        traning_end_time,
+      </if>
+      <if test="traningSite != null" >
+        traning_site,
+      </if>
+      <if test="traningRemark != null" >
+        traning_remark,
+      </if>
+      <if test="traningTarget != null" >
+        traning_target,
+      </if>
+      <if test="traningTeamName != null" >
+        traning_team_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="coachId != null" >
+        coach_id,
+      </if>
+      <if test="traningStage != null" >
+        traning_stage,
+      </if>
+      <if test="mainPlanId != null" >
+        main_plan_id,
+      </if>
+      <if test="belongCoach != null" >
+        belong_coach,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="traningTheme != null" >
+        #{traningTheme,jdbcType=INTEGER},
+      </if>
+      <if test="traningStartTime != null" >
+        #{traningStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traningEndTime != null" >
+        #{traningEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traningSite != null" >
+        #{traningSite,jdbcType=VARCHAR},
+      </if>
+      <if test="traningRemark != null" >
+        #{traningRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="traningTarget != null" >
+        #{traningTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="traningTeamName != null" >
+        #{traningTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coachId != null" >
+        #{coachId,jdbcType=VARCHAR},
+      </if>
+      <if test="traningStage != null" >
+        #{traningStage,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPlanId != null" >
+        #{mainPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongCoach != null" >
+        #{belongCoach,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.TrainingPlan" >
+    update adms_training_plan
+    <set >
+      <if test="traningTheme != null" >
+        traning_theme = #{traningTheme,jdbcType=INTEGER},
+      </if>
+      <if test="traningStartTime != null" >
+        traning_start_time = #{traningStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traningEndTime != null" >
+        traning_end_time = #{traningEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traningSite != null" >
+        traning_site = #{traningSite,jdbcType=VARCHAR},
+      </if>
+      <if test="traningRemark != null" >
+        traning_remark = #{traningRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="traningTarget != null" >
+        traning_target = #{traningTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="traningTeamName != null" >
+        traning_team_name = #{traningTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coachId != null" >
+        coach_id = #{coachId,jdbcType=VARCHAR},
+      </if>
+      <if test="traningStage != null" >
+        traning_stage = #{traningStage,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPlanId != null" >
+        main_plan_id = #{mainPlanId,jdbcType=VARCHAR},
+      </if>
+      <if test="belongCoach != null" >
+        belong_coach = #{belongCoach,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.TrainingPlan" >
+    update adms_training_plan
+    set traning_theme = #{traningTheme,jdbcType=INTEGER},
+      traning_start_time = #{traningStartTime,jdbcType=TIMESTAMP},
+      traning_end_time = #{traningEndTime,jdbcType=TIMESTAMP},
+      traning_site = #{traningSite,jdbcType=VARCHAR},
+      traning_remark = #{traningRemark,jdbcType=VARCHAR},
+      traning_target = #{traningTarget,jdbcType=VARCHAR},
+      traning_team_name = #{traningTeamName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      coach_id = #{coachId,jdbcType=VARCHAR},
+      traning_stage = #{traningStage,jdbcType=VARCHAR},
+      main_plan_id = #{mainPlanId,jdbcType=VARCHAR},
+      belong_coach = #{belongCoach,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--查看该教练下训练计划数据条数-->
+  <select id="getTraningPlanCountBycocah" parameterType="com.sportsxdata.adms.model.TraningPlanListsBycocahEntry"
+          resultType="java.lang.Integer">
+    <bind name="teamName1" value="'%' + teamName + '%'" />
+    <bind name="stage1" value="'%' + stage + '%'" />
+    select count(1)
+    from adms_training_plan ap
+    <where>
+      ap.coach_id=#{coachId}
+      <if test='teamName != null and teamName !="" '>
+        and ap.traning_team_name like #{teamName1}
+      </if>
+      <if test='stage != null and stage !="" '>
+        and ap.traning_stage like #{stage1}
+      </if>
+      <if test=' currentTime != null and currentTime != "" '>
+        and DATE_FORMAT(ap.traning_start_time,'%Y-%m-%d') = DATE_FORMAT(#{currentTime},'%Y-%m-%d')
+      </if>
+    </where>
+  </select>
+
+  <!--查看该教练下训练计划列表-->
+  <select id="getTraningPlanListsBycocah" parameterType="com.sportsxdata.adms.model.TraningPlanListsBycocahEntry"
+          resultType="com.sportsxdata.adms.model.TraningPlanListsBycocahResult">
+    <bind name="teamName1" value="'%' + teamName + '%'" />
+    <bind name="stage1" value="'%' + stage + '%'" />
+    select id,CONCAT(DATE_FORMAT(ap.traning_start_time,'%Y年%m月%d日 %H:%i'),'-',DATE_FORMAT(ap.traning_end_time,'%H:%i')) as time
+    ,ap.traning_team_name as teamName ,ap.traning_stage as stage
+    ,(select count(distinct athlete_id) from adms_plan_action_relation where adms_training_plane_id = ap.id) as nump
+    ,case when  ap.traning_start_time &gt; now() then '未开始' when ap.traning_end_time &lt;= now() then '已结束' else '进行中' end as state
+    from adms_training_plan ap
+    <where>
+      ap.coach_id=#{coachId}
+      <if test='teamName != null and teamName !="" '>
+        and ap.traning_team_name like #{teamName1}
+      </if>
+      <if test='stage != null and stage !="" '>
+        and ap.traning_stage like #{stage1}
+      </if>
+      <if test=' currentTime != null and currentTime != "" '>
+        and DATE_FORMAT(ap.traning_start_time,'%Y-%m-%d') = DATE_FORMAT(#{currentTime},'%Y-%m-%d')
+      </if>
+    </where>
+    order by time desc
+    limit #{startSize},#{pageRowNum}
+  </select>
+
+  <select id="selectPlanByStartTimeAndEndTimeAndAthleteList" resultType="Integer">
+    SELECT
+        COUNT(plan.id) FROM adms_training_plan plan
+    LEFT JOIN adms_plan_action_relation rel ON plan.id = rel.adms_training_plane_id
+    WHERE
+        rel.athlete_id IN
+    <foreach collection="athleteIdList" open="(" close=")" item="id"
+             separator=",">
+      #{id}
+    </foreach>
+    AND (
+        (
+            #{startDateTime} BETWEEN plan.traning_start_time
+            AND plan.traning_end_time
+        )
+        OR (
+            #{endDateTime} BETWEEN plan.traning_start_time
+            AND plan.traning_end_time
+        )
+        OR (
+            plan.traning_start_time BETWEEN #{startDateTime}
+            AND #{endDateTime}
+        )
+        OR (
+            plan.traning_end_time BETWEEN #{startDateTime}
+            AND #{endDateTime}
+        )
+    )
+    AND plan.traning_end_time > SYSDATE();
+
+
+  </select>
+
+  <insert id="batchInsert">
+    insert into adms_training_plan (id, traning_theme, traning_start_time,
+      traning_end_time, traning_site, traning_remark,
+      traning_target, traning_team_name, create_time,
+      modify_time, coach_id, traning_stage,
+      main_plan_id,belong_coach)
+    values
+    <foreach collection="planList" item="item" index="index" separator=",">
+    (#{item.id,jdbcType=VARCHAR}, #{item.traningTheme,jdbcType=INTEGER}, #{item.traningStartTime,jdbcType=TIMESTAMP},
+      #{item.traningEndTime,jdbcType=TIMESTAMP}, #{item.traningSite,jdbcType=VARCHAR}, #{item.traningRemark,jdbcType=VARCHAR},
+      #{item.traningTarget,jdbcType=VARCHAR}, #{item.traningTeamName,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.modifyTime,jdbcType=TIMESTAMP}, #{item.coachId,jdbcType=VARCHAR}, #{item.traningStage,jdbcType=VARCHAR},
+      #{item.mainPlanId,jdbcType=VARCHAR},#{item.belongCoach,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="selectCountByMainId" resultType="java.util.Map">
+    select  (select count(1) from adms_training_plan where main_plan_id = p.main_plan_id ) as count,p.main_plan_id as mainId
+    from adms_training_plan p
+    where p.id=#{id}
+  </select>
+
+
+  <select id="getPlanByAthleteIdAndDatetime" resultMap="BaseResultMap">
+    <![CDATA[
+    select plan.* from adms_athlete ath , adms_plan_action_relation rel ,adms_training_plan plan
+    where
+    ath.id = rel.athlete_id
+    and
+    plan.id = rel.adms_training_plane_id
+    and
+    (#{datetime} between date(plan.traning_start_time)
+    and
+    date(plan.traning_end_time))
+    and
+    ath.id = #{athleteId}
+--     and
+--     plan.traning_end_time < now()
+    GROUP BY plan.id;
+    ]]>
+  </select>
+
+  <!--数字录入中 展示运动员列表（通过训练时间段来分类）-->
+  <!--start-->
+  <resultMap id="AthletesByTrainingTimeResult" type="com.sportsxdata.adms.model.AthletesByTrainingTimeResult">
+    <id column="trainingPlanId" property="trainingPlanId" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <collection property="users" ofType="com.sportsxdata.adms.model.UserImge" select="selectUser" column="trainingPlanId"/>
+  </resultMap>
+
+  <select id="selectUser" resultType="com.sportsxdata.adms.model.UserImge" parameterType="java.lang.String">
+    select aa.id as athleteId ,aa.name as name ,aa.avatar as Image
+    from adms_athlete aa,(
+      select DISTINCT athlete_id from adms_plan_action_relation
+      where adms_training_plane_id = #{trainingPlanId}
+      ) atp
+    where 1=1
+    and aa.id = atp.athlete_id
+    ORDER BY convert(name using gbk) ASC
+  </select>
+
+  <select id="getAthletesByTrainingTimeAndCoachId" parameterType="java.lang.String" resultMap="AthletesByTrainingTimeResult">
+    select ap.id as trainingPlanId
+    ,CONCAT(DATE_FORMAT(ap.traning_start_time,'%H:%i'),'-',DATE_FORMAT(ap.traning_end_time,'%H:%i')) as time
+    ,case when ap.traning_start_time &gt; now() then '未开始'
+    when ap.traning_end_time &lt;= now() then '已结束' else '进行中' end as state
+    from adms_training_plan ap
+    where 1=1
+    and ap.coach_id = #{coachId}
+    and DATE_FORMAT(ap.traning_start_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+    order by  traning_start_time desc
+  </select>
+  <!--end-->
+
+  <!--数字录入中 展示运动员列表（包含训练进行状态）-->
+  <!--start-->
+  <resultMap id="AthletesTrainingResultV" type="com.sportsxdata.adms.model.AthletesTrainingResultV">
+    <id column="athleteId" property="athleteId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="avatar" property="Image" jdbcType="VARCHAR" />
+    <result column="coachId" property="coachId" jdbcType="VARCHAR" />
+    <collection property="list" ofType="com.sportsxdata.adms.model.AthletesTrainingResult"
+                select="getTrainingByUser" column="{athleteId = athleteId , coachId = coachId}"/>
+  </resultMap>
+
+  <select id="getTrainingByUser" resultType="com.sportsxdata.adms.model.AthletesTrainingResult">
+      select DISTINCT ap.id as trainingPlanId,concat(DATE_FORMAT(ap.traning_start_time,'%H:%i'),'-',DATE_FORMAT(ap.traning_end_time,'%H:%i')) time,
+        case when ap.traning_start_time &gt; now() then '未开始'
+        when ap.traning_end_time &lt;= now() then '已结束' else '进行中' end as state
+      from adms_training_plan ap,adms_plan_action_relation atp
+      where DATE_FORMAT(ap.traning_start_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+      and ap.coach_id = #{coachId}
+			and ap.id = atp.adms_training_plane_id
+			and atp.athlete_id = #{athleteId}
+      order by ap.traning_start_time asc
+  </select>
+
+  <select id="getAthletesTrainingByCoachId" resultMap="AthletesTrainingResultV">
+    select aa.id as athleteId,name,avatar,adms_coach_id as coachId
+    from adms_athlete aa
+    where adms_coach_id = #{coachId}
+    ORDER BY convert(name using gbk) ASC
+  </select>
+  <!--end-->
+
+</mapper>

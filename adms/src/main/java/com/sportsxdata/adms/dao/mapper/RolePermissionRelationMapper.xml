@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.RolePermissionRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.RolePermissionRelationKey" >
+    <id column="system_role_id" property="systemRoleId" jdbcType="VARCHAR" />
+    <id column="system_permission_id" property="systemPermissionId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.sportsxdata.adms.model.RolePermissionRelationKey" >
+    delete from adms_role_permission_relation
+    where system_role_id = #{systemRoleId,jdbcType=VARCHAR}
+      and system_permission_id = #{systemPermissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.RolePermissionRelationKey" >
+    insert into adms_role_permission_relation (system_role_id, system_permission_id)
+    values (#{systemRoleId,jdbcType=VARCHAR}, #{systemPermissionId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.RolePermissionRelationKey" >
+    insert into adms_role_permission_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemRoleId != null" >
+        system_role_id,
+      </if>
+      <if test="systemPermissionId != null" >
+        system_permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemRoleId != null" >
+        #{systemRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemPermissionId != null" >
+        #{systemPermissionId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

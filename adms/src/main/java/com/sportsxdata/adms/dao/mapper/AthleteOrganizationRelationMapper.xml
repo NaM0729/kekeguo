@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.AthleteOrganizationRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.AthleteOrganizationRelationKey" >
+    <id column="athlete_id" property="athleteId" jdbcType="VARCHAR" />
+    <id column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.sportsxdata.adms.model.AthleteOrganizationRelationKey" >
+    delete from adms_athlete_organization_relation
+    where athlete_id = #{athleteId,jdbcType=VARCHAR}
+      and organization_id = #{organizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.AthleteOrganizationRelationKey" >
+    insert into adms_athlete_organization_relation (athlete_id, organization_id)
+    values (#{athleteId,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.AthleteOrganizationRelationKey" >
+    insert into adms_athlete_organization_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="athleteId != null" >
+        athlete_id,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="athleteId != null" >
+        #{athleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

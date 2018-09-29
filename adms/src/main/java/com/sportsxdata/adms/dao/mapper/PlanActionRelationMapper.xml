@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.PlanActionRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.PlanActionRelation" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_action_id" property="admsActionId" jdbcType="VARCHAR" />
+    <result column="adms_training_plane_id" property="admsTrainingPlaneId" jdbcType="VARCHAR" />
+    <result column="group_num" property="groupNum" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="strength" property="strength" jdbcType="VARCHAR" />
+    <result column="interval" property="interval" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="max_speed" property="maxSpeed" jdbcType="VARCHAR" />
+    <result column="avg_speed" property="avgSpeed" jdbcType="VARCHAR" />
+    <result column="max_power" property="maxPower" jdbcType="VARCHAR" />
+    <result column="avg_power" property="avgPower" jdbcType="VARCHAR" />
+    <result column="assess" property="assess" jdbcType="VARCHAR" />
+    <result column="time_real" property="timeReal" jdbcType="VARCHAR" />
+    <result column="strength_real" property="strengthReal" jdbcType="VARCHAR" />
+    <result column="interval_real" property="intervalReal" jdbcType="VARCHAR" />
+    <result column="duration_real" property="durationReal" jdbcType="VARCHAR" />
+    <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
+    <result column="athlete_id" property="athleteId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, modify_time, adms_action_id, adms_training_plane_id, group_num, 
+    time, strength, `interval`, duration, max_speed, avg_speed, max_power, avg_power, assess,
+    time_real, strength_real, interval_real, duration_real, theme_id, athlete_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_plan_action_relation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_plan_action_relation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.PlanActionRelation" >
+    insert into adms_plan_action_relation (id, create_time, modify_time, 
+      adms_action_id, adms_training_plane_id, group_num, 
+      time, strength, interval, 
+      duration, max_speed, avg_speed, 
+      max_power, avg_power, assess, 
+      time_real, strength_real, interval_real, 
+      duration_real, theme_id, athlete_id, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsActionId,jdbcType=VARCHAR}, #{admsTrainingPlaneId,jdbcType=VARCHAR}, #{groupNum,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{strength,jdbcType=VARCHAR}, #{interval,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=VARCHAR}, #{maxSpeed,jdbcType=VARCHAR}, #{avgSpeed,jdbcType=VARCHAR}, 
+      #{maxPower,jdbcType=VARCHAR}, #{avgPower,jdbcType=VARCHAR}, #{assess,jdbcType=VARCHAR}, 
+      #{timeReal,jdbcType=VARCHAR}, #{strengthReal,jdbcType=VARCHAR}, #{intervalReal,jdbcType=VARCHAR}, 
+      #{durationReal,jdbcType=VARCHAR}, #{themeId,jdbcType=VARCHAR}, #{athleteId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.PlanActionRelation" >
+    insert into adms_plan_action_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsActionId != null" >
+        adms_action_id,
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        adms_training_plane_id,
+      </if>
+      <if test="groupNum != null" >
+        group_num,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="strength != null" >
+        strength,
+      </if>
+      <if test="interval != null" >
+        interval,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="maxSpeed != null" >
+        max_speed,
+      </if>
+      <if test="avgSpeed != null" >
+        avg_speed,
+      </if>
+      <if test="maxPower != null" >
+        max_power,
+      </if>
+      <if test="avgPower != null" >
+        avg_power,
+      </if>
+      <if test="assess != null" >
+        assess,
+      </if>
+      <if test="timeReal != null" >
+        time_real,
+      </if>
+      <if test="strengthReal != null" >
+        strength_real,
+      </if>
+      <if test="intervalReal != null" >
+        interval_real,
+      </if>
+      <if test="durationReal != null" >
+        duration_real,
+      </if>
+      <if test="themeId != null" >
+        theme_id,
+      </if>
+      <if test="athleteId != null" >
+        athlete_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsActionId != null" >
+        #{admsActionId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNum != null" >
+        #{groupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        #{strength,jdbcType=VARCHAR},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSpeed != null" >
+        #{maxSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="avgSpeed != null" >
+        #{avgSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPower != null" >
+        #{maxPower,jdbcType=VARCHAR},
+      </if>
+      <if test="avgPower != null" >
+        #{avgPower,jdbcType=VARCHAR},
+      </if>
+      <if test="assess != null" >
+        #{assess,jdbcType=VARCHAR},
+      </if>
+      <if test="timeReal != null" >
+        #{timeReal,jdbcType=VARCHAR},
+      </if>
+      <if test="strengthReal != null" >
+        #{strengthReal,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalReal != null" >
+        #{intervalReal,jdbcType=VARCHAR},
+      </if>
+      <if test="durationReal != null" >
+        #{durationReal,jdbcType=VARCHAR},
+      </if>
+      <if test="themeId != null" >
+        #{themeId,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteId != null" >
+        #{athleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.PlanActionRelation" >
+    update adms_plan_action_relation
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsActionId != null" >
+        adms_action_id = #{admsActionId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsTrainingPlaneId != null" >
+        adms_training_plane_id = #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupNum != null" >
+        group_num = #{groupNum,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        strength = #{strength,jdbcType=VARCHAR},
+      </if>
+      <if test="interval != null" >
+        interval = #{interval,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSpeed != null" >
+        max_speed = #{maxSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="avgSpeed != null" >
+        avg_speed = #{avgSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="maxPower != null" >
+        max_power = #{maxPower,jdbcType=VARCHAR},
+      </if>
+      <if test="avgPower != null" >
+        avg_power = #{avgPower,jdbcType=VARCHAR},
+      </if>
+      <if test="assess != null" >
+        assess = #{assess,jdbcType=VARCHAR},
+      </if>
+      <if test="timeReal != null" >
+        time_real = #{timeReal,jdbcType=VARCHAR},
+      </if>
+      <if test="strengthReal != null" >
+        strength_real = #{strengthReal,jdbcType=VARCHAR},
+      </if>
+      <if test="intervalReal != null" >
+        interval_real = #{intervalReal,jdbcType=VARCHAR},
+      </if>
+      <if test="durationReal != null" >
+        duration_real = #{durationReal,jdbcType=VARCHAR},
+      </if>
+      <if test="themeId != null" >
+        theme_id = #{themeId,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteId != null" >
+        athlete_id = #{athleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.PlanActionRelation" >
+    update adms_plan_action_relation
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_action_id = #{admsActionId,jdbcType=VARCHAR},
+      adms_training_plane_id = #{admsTrainingPlaneId,jdbcType=VARCHAR},
+      group_num = #{groupNum,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      strength = #{strength,jdbcType=VARCHAR},
+      interval = #{interval,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      max_speed = #{maxSpeed,jdbcType=VARCHAR},
+      avg_speed = #{avgSpeed,jdbcType=VARCHAR},
+      max_power = #{maxPower,jdbcType=VARCHAR},
+      avg_power = #{avgPower,jdbcType=VARCHAR},
+      assess = #{assess,jdbcType=VARCHAR},
+      time_real = #{timeReal,jdbcType=VARCHAR},
+      strength_real = #{strengthReal,jdbcType=VARCHAR},
+      interval_real = #{intervalReal,jdbcType=VARCHAR},
+      duration_real = #{durationReal,jdbcType=VARCHAR},
+      theme_id = #{themeId,jdbcType=VARCHAR},
+      athlete_id = #{athleteId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <insert id="batchInsert">
+    insert into adms_plan_action_relation (id, create_time, modify_time,
+      adms_action_id, adms_training_plane_id, group_num,
+      time, strength, `interval`,
+      duration, max_speed, avg_speed,
+      max_power, avg_power, assess,
+      time_real, strength_real, interval_real,
+      duration_real, theme_id, athlete_id,
+      remark,`order`)
+    values
+    <foreach collection="planActionRelationList" item="item" index="index" separator=",">
+    (#{item.id,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.modifyTime,jdbcType=TIMESTAMP},
+      #{item.admsActionId,jdbcType=VARCHAR}, #{item.admsTrainingPlaneId,jdbcType=VARCHAR}, #{item.groupNum,jdbcType=VARCHAR},
+      #{item.time,jdbcType=VARCHAR}, #{item.strength,jdbcType=VARCHAR}, #{item.interval,jdbcType=VARCHAR},
+      #{item.duration,jdbcType=VARCHAR}, #{item.maxSpeed,jdbcType=VARCHAR}, #{item.avgSpeed,jdbcType=VARCHAR},
+      #{item.maxPower,jdbcType=VARCHAR}, #{item.avgPower,jdbcType=VARCHAR}, #{item.assess,jdbcType=VARCHAR},
+      #{item.time,jdbcType=VARCHAR}, #{item.strength,jdbcType=VARCHAR}, #{item.interval,jdbcType=VARCHAR},
+      #{item.duration,jdbcType=VARCHAR}, #{item.themeId,jdbcType=VARCHAR}, #{item.athleteId,jdbcType=VARCHAR},
+      #{item.remark,jdbcType=VARCHAR},#{item.order})
+    </foreach>
+  </insert>
+
+  <resultMap id="trainingPlanResultMap" type="com.sportsxdata.adms.model.TrainingPlanPojo" >
+    <id column="planId" property="planId"></id>
+    <result column="startTime" property="startTime"></result>
+    <result column="endTime" property="endTime"></result>
+    <collection property="sectionPojos" ofType="com.sportsxdata.adms.model.SectionPojo" javaType="java.util.List">
+      <id property="sectionId" column="sectionId"></id>
+      <result property="sectionName" column="sectionName"></result>
+      <collection property="themePojos" ofType="com.sportsxdata.adms.model.ThemePojo" javaType="java.util.List">
+        <id column="themeId" property="themeId"></id>
+        <result column="themeName" property="themeName"/>
+        <collection property="actionPojos" ofType="com.sportsxdata.adms.model.ActionPojo" javaType="java.util.List">
+          <id column="order" property="order"></id>
+          <result column="actionId" property="actionId"></result>
+          <result column="actionName" property="actionName"/>
+          <collection property="planActionRelationPojos" ofType="com.sportsxdata.adms.model.PlanActionRelationPojo" javaType="java.util.List">
+            <id column="id" property="pid" jdbcType="VARCHAR" />
+            <id column="planId" property="planId"></id>
+            <result column="athleteId" property="athleteId" jdbcType="VARCHAR" />
+            <result column="modifyTime" property="modifyTime" jdbcType="TIMESTAMP" />
+            <result column="sectionId" property="sectionId" jdbcType="VARCHAR" />
+            <result column="themeId" property="themeId" jdbcType="VARCHAR" />
+            <result column="actionId" property="actionId" jdbcType="VARCHAR" />
+            <result column="groupNum" property="groupNum" jdbcType="VARCHAR" />
+            <result column="maxSpeed" property="maxSpeed" jdbcType="VARCHAR" />
+            <result column="avgSpeed" property="avgSpeed" jdbcType="VARCHAR" />
+            <result column="maxPower" property="maxPower" jdbcType="VARCHAR" />
+            <result column="avgPower" property="avgPower" jdbcType="VARCHAR" />
+            <result column="assess" property="assess" jdbcType="VARCHAR" />
+            <result column="timeReal" property="timeReal" jdbcType="VARCHAR" />
+            <result column="strengthReal" property="strengthReal" jdbcType="VARCHAR" />
+            <result column="intervalReal" property="intervalReal" jdbcType="VARCHAR" />
+            <result column="durationReal" property="durationReal" jdbcType="VARCHAR" />
+          </collection>
+        </collection>
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="selectTrainingPlanDataByPlanIdAndAthleteId" resultMap="trainingPlanResultMap">
+    SELECT
+        p.id as planId,
+        p.traning_start_time as startTime,
+        p.traning_end_time as endTime,
+        s.id as sectionId,
+        s.`name` as sectionName,
+        t.id AS themeId,
+        t.`name` AS themeName,
+        a.id AS actionId,
+        a. NAME AS actionName,
+        r.id as id,
+        r.adms_training_plane_id as planId,
+        r.athlete_id AS athleteId,
+        r.modify_time AS modifyTime,
+        r.theme_id as themeId,
+        r.adms_action_id as actionId,
+        r.group_num AS groupNum,
+        r.max_speed as maxSpeed,
+        r.avg_speed as avgSpeed,
+        r.max_power as maxPower,
+        r.avg_power as avgPower,
+        r.assess,
+        r.time_real as timeReal,
+        r.strength_real as strengthReal,
+        r.interval_real as intervalReal,
+        r.duration_real as durationReal,
+        r.order
+    FROM
+        adms_training_plan p,
+        adms_plan_action_relation r,
+        adms_action a,
+        adms_theme t,
+        adms_section s,
+        adms_theme_action_relation ar
+    WHERE
+        p.id = r.adms_training_plane_id
+    AND r.adms_action_id = a.id
+    AND r.theme_id = t.id
+    AND t.adms_section_id = s.id
+    AND r.theme_id = ar.adms_theme_id
+    AND r.athlete_id = #{athleteId}
+    AND r.adms_training_plane_id = #{planId}
+    GROUP BY
+        r.adms_action_id,
+        r.theme_id,
+        r.group_num,
+		r.`order`
+    ORDER BY r.create_time ASC
+  </select>
+
+  <resultMap id="trainingResultMap" type="com.sportsxdata.adms.model.TrainingPlanPojo" >
+    <id column="planId" property="planId"></id>
+    <result column="startTime" property="startTime"></result>
+    <result column="endTime" property="endTime"></result>
+    <collection property="sectionPojos" ofType="com.sportsxdata.adms.model.SectionPojo" javaType="java.util.List">
+      <id property="sectionId" column="sectionId"></id>
+      <result property="sectionName" column="sectionName"></result>
+      <collection property="themePojos" ofType="com.sportsxdata.adms.model.ThemePojo" javaType="java.util.List">
+        <result column="themeId" property="themeId"></result>
+        <result column="themeName" property="themeName"/>
+        <collection property="actionPojos" ofType="com.sportsxdata.adms.model.ActionPojo" javaType="java.util.List">
+          <id column="order" property="order"></id>
+          <result column="actionId" property="actionId"/>
+          <result column="actionName" property="actionName"/>
+        </collection>
+      </collection>
+    </collection>
+  </resultMap>
+  <select id="selectTrainingDataByPlanIdAndAthleteId" resultMap="trainingResultMap">
+    SELECT
+      p.id as planId,
+      p.traning_start_time as startTime,
+      p.traning_end_time as endTime,
+      s.id as sectionId,
+      s.`name` as sectionName,
+      t.id AS themeId,
+      t.`name` AS themeName,
+      a.id AS actionId,
+      a. NAME AS actionName,
+      r.order
+    FROM
+      adms_training_plan p,
+      adms_plan_action_relation r,
+      adms_action a,
+      adms_theme t,
+      adms_section s,
+      adms_theme_action_relation ar
+    WHERE
+      p.id = r.adms_training_plane_id
+    AND r.adms_action_id = a.id
+    AND r.theme_id = t.id
+    AND t.adms_section_id = s.id
+    AND r.theme_id = ar.adms_theme_id
+    AND r.athlete_id = #{athleteId}
+    AND r.adms_training_plane_id = #{planId}
+    GROUP BY
+      r.adms_action_id,
+      r.theme_id,
+      r.group_num,
+      r.order
+    ORDER BY r.create_time ASC
+  </select>
+  <select id="selectTrainingDataByActionIdAndAthleteId" resultType="com.sportsxdata.adms.model.ActionDataPojo">
+    SELECT
+      r.id as id,
+      r.adms_training_plane_id as planId,
+      r.modify_time AS modifyTime,
+      t.adms_section_id as sectionId,
+      r.theme_id as themeId,
+      r.adms_action_id as actionId,
+      r.group_num AS groupNum,
+      r.max_speed as maxSpeed,
+      r.avg_speed as avgSpeed,
+      r.max_power as maxPower,
+      r.avg_power as avgPower,
+      r.assess,
+      r.time_real as timeReal,
+      r.strength_real as strengthReal,
+      r.interval_real as intervalReal,
+      r.duration_real as durationReal
+    FROM
+      adms_plan_action_relation r,
+      adms_theme t
+    WHERE
+      r.theme_id = t.id
+    AND r.adms_action_id = #{actionId}
+    AND r.athlete_id = #{athleteId}
+    AND r.adms_training_plane_id = #{planId}
+    AND r.`order` = #{order}
+    GROUP BY
+      r.adms_action_id,
+      r.theme_id,
+      r.group_num,
+      r.`order`
+    ORDER BY r.create_time ASC
+  </select>
+  <resultMap id="planActRelResultMap" type="com.sportsxdata.adms.model.AthletePlansVO" >
+    <id column="oid" property="id"></id>
+    <result column="t_endtime" property="t_endtime"></result>
+    <result column="t_starttime" property="t_starttime"></result>
+    <result column="belongcoach" property="belongcoach"></result>
+    <collection property="sectionVos" ofType="com.sportsxdata.adms.model.SectionVo" javaType="java.util.List">
+      <id property="sid" column="sid"></id>
+      <result property="sname" column="sname"></result>
+      <collection property="themeVos" ofType="com.sportsxdata.adms.model.ThemeVo" javaType="java.util.List">
+        <id column="order" property="tid"></id>
+        <result column="tname" property="tname"/>
+        <collection property="planActionRelationVos" ofType="com.sportsxdata.adms.model.PlanActionRelationVo" javaType="java.util.List">
+          <id column="pid" property="pid" jdbcType="VARCHAR" />
+          <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+          <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+          <result column="actid" property="actid" jdbcType="VARCHAR" />
+          <result column="actname" property="actname" jdbcType="VARCHAR" />
+          <result column="adms_training_plane_id" property="admsTrainingPlaneId" jdbcType="VARCHAR" />
+          <result column="group_num" property="groupNum" jdbcType="VARCHAR" />
+          <result column="time" property="time" jdbcType="VARCHAR" />
+          <result column="strength" property="strength" jdbcType="VARCHAR" />
+          <result column="interval" property="interval" jdbcType="VARCHAR" />
+          <result column="duration" property="duration" jdbcType="VARCHAR" />
+          <result column="max_speed" property="maxSpeed" jdbcType="VARCHAR" />
+          <result column="avg_speed" property="avgSpeed" jdbcType="VARCHAR" />
+          <result column="max_power" property="maxPower" jdbcType="VARCHAR" />
+          <result column="avg_power" property="avgPower" jdbcType="VARCHAR" />
+          <result column="assess" property="assess" jdbcType="VARCHAR" />
+          <result column="time_real" property="timeReal" jdbcType="VARCHAR" />
+          <result column="strength_real" property="strengthReal" jdbcType="VARCHAR" />
+          <result column="interval_real" property="intervalReal" jdbcType="VARCHAR" />
+          <result column="duration_real" property="durationReal" jdbcType="VARCHAR" />
+          <result column="theme_id" property="themeId" jdbcType="VARCHAR" />
+          <result column="athlete_id" property="athleteId" jdbcType="VARCHAR" />
+          <result column="remark" property="remark" jdbcType="VARCHAR" />
+        </collection>
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="getPlanInfo" resultMap="planActRelResultMap">
+    SELECT
+    atp.id as oid,
+    atp.traning_start_time as t_starttime,
+    atp.traning_end_time as t_endtime,
+    sec.id as sid,
+    sec.name as sname,
+    att.id as tid,
+    att.name as tname,
+    apar.id as pid,
+    apar.adms_action_id as actid,
+    aa2.name as actname,
+    apar.*
+    FROM
+    adms_training_plan atp,
+    adms_plan_action_relation apar,
+    adms_athlete aa1,
+    adms_action aa2,
+    adms_theme_action_relation atar,
+    adms_theme att,
+    adms_section sec
+    WHERE
+    atp.id = apar.adms_training_plane_id
+    AND
+    aa1.id = apar.athlete_id
+    AND
+    aa2.id = apar.adms_action_id
+    and
+    aa2.id = atar.adms_action_id
+    and
+    atar.adms_theme_id = att.id
+    and
+    apar.theme_id = att.id
+    and
+    att.adms_section_id = sec.id
+    AND
+    atp.id in
+    <foreach collection="planIds" open="(" close=")" item="id" separator=",">
+      #{id}
+    </foreach>
+    and
+    aa1.id = #{athleteId}
+    group by sec.id , att.id , aa2.id ,apar.group_num, apar.`order`
+    ORDER BY apar.create_time ,apar.`order`;
+  </select>
+
+  <select id="getPlanActionRelationByPlanId" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from adms_plan_action_relation
+    where adms_training_plane_id = #{planId}
+  </select>
+  <!--更新整个动作的实际训练数据-->
+  <update id="updateTrainingPlan" parameterType="java.util.Map">
+    update adms_plan_action_relation
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="max_speed =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.maxSpeed !=null">
+            when id=#{item.id} then #{item.maxSpeed}
+          </if>
+          <if test="item.maxSpeed == null">
+            when id=#{item.id} then adms_plan_action_relation.max_speed
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avg_speed =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.avgSpeed !=null">
+            when id=#{item.id} then #{item.avgSpeed}
+          </if>
+          <if test="item.maxSpeed == null">
+            when id=#{item.id} then adms_plan_action_relation.avg_speed
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="max_power =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.maxPower !=null">
+            when id=#{item.id} then #{item.maxPower}
+          </if>
+          <if test="item.maxPower == null">
+            when id=#{item.id} then adms_plan_action_relation.max_power
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avg_power =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.avgPower !=null">
+            when id=#{item.id} then #{item.avgPower}
+          </if>
+          <if test="item.avgPower == null">
+            when id=#{item.id} then adms_plan_action_relation.avg_power
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="time_real =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.timeReal !=null">
+            when id=#{item.id} then #{item.timeReal}
+          </if>
+          <if test="item.timeReal == null">
+            when id=#{item.id} then adms_plan_action_relation.time_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="strength_real =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.strengthReal !=null">
+            when id=#{item.id} then #{item.strengthReal}
+          </if>
+          <if test="item.strengthReal == null">
+            when id=#{item.id} then adms_plan_action_relation.strength_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="interval_real =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.intervalReal !=null">
+            when id=#{item.id} then #{item.intervalReal}
+          </if>
+          <if test="item.intervalReal == null">
+            when id=#{item.id} then adms_plan_action_relation.interval_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="duration_real =case" suffix="end,">
+        <foreach collection="planActionRelations" item="item" index="index">
+          <if test="item.durationReal !=null">
+            when id=#{item.id} then #{item.durationReal}
+          </if>
+          <if test="item.durationReal == null">
+            when id=#{item.id} then adms_plan_action_relation.duration_real
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id IN
+    <foreach collection="planActionRelations" item="item" index="index" open="(" separator="," close=")">
+      #{item.id,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <!--更新整条计划的数据-->
+  <update id="updateAllTrainingPlanData" parameterType="java.util.List">
+    update adms_plan_action_relation
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="max_speed =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.maxSpeed !=null">
+            when id=#{item.id} then #{item.maxSpeed}
+          </if>
+          <if test="item.maxSpeed == null">
+            when id=#{item.id} then adms_plan_action_relation.max_speed
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avg_speed =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.avgSpeed !=null">
+            when id=#{item.id} then #{item.avgSpeed}
+          </if>
+          <if test="item.maxSpeed == null">
+            when id=#{item.id} then adms_plan_action_relation.avg_speed
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="max_power =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.maxPower !=null">
+            when id=#{item.id} then #{item.maxPower}
+          </if>
+          <if test="item.maxPower == null">
+            when id=#{item.id} then adms_plan_action_relation.max_power
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avg_power =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.avgPower !=null">
+            when id=#{item.id} then #{item.avgPower}
+          </if>
+          <if test="item.avgPower == null">
+            when id=#{item.id} then adms_plan_action_relation.avg_power
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="time_real =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.timeReal !=null">
+            when id=#{item.id} then #{item.timeReal}
+          </if>
+          <if test="item.timeReal == null">
+            when id=#{item.id} then adms_plan_action_relation.time_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="strength_real =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.strengthReal !=null">
+            when id=#{item.id} then #{item.strengthReal}
+          </if>
+          <if test="item.strengthReal == null">
+            when id=#{item.id} then adms_plan_action_relation.strength_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="interval_real =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.intervalReal !=null">
+            when id=#{item.id} then #{item.intervalReal}
+          </if>
+          <if test="item.intervalReal == null">
+            when id=#{item.id} then adms_plan_action_relation.interval_real
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="duration_real =case" suffix="end,">
+        <foreach collection="dataForOnePrograms" item="item" index="index">
+          <if test="item.durationReal !=null">
+            when id=#{item.id} then #{item.durationReal}
+          </if>
+          <if test="item.durationReal == null">
+            when id=#{item.id} then adms_plan_action_relation.duration_real
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id IN
+    <foreach collection="dataForOnePrograms" item="item" index="index" open="(" separator="," close=")">
+      #{item.id,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <!--更新整个动作的评估数据-->
+  <update id="updateTrainingActionAssess" parameterType="java.lang.String">
+    UPDATE adms_plan_action_relation SET assess=#{assess},modify_time = NOW()
+    WHERE adms_training_plane_id = #{planId}
+    AND theme_id = #{themeId}
+    AND adms_action_id = #{actionId}
+    AND athlete_id = #{athleteId}
+  </update>
+  <!--提交整条计划时，更新modify_time-->
+  <update id="updataTrainingTime" parameterType="java.lang.String">
+    update adms_plan_action_relation set modify_time = NOW() where adms_training_plane_id = #{planId}
+  </update>
+
+  <delete id="deleteByTrainPlanId">
+    DELETE FROM adms_plan_action_relation WHERE adms_training_plane_id = #{VALUE }
+  </delete>
+
+  <delete id="deleteByTrainingPlaneId" >
+    delete from adms_plan_action_relation
+    where adms_training_plane_id = #{trainingPlaneId}
+  </delete>
+
+
+
+
+  <resultMap id="EditPlanResultMap" type="com.sportsxdata.adms.model.ActionRelEditPlanVo" >
+    <result column="main_plan_id" property="main_plan_id"></result>
+    <result column="plan_id" property="plan_id"></result>
+    <result column="belong_coach" property="belongcoach"></result>
+    <collection property="sectionVos" ofType="com.sportsxdata.adms.model.SectionEditPlanVo">
+      <id column="sid" property="sid" ></id>
+      <result column="sname" property="sname" ></result>
+      <collection property="themeEditPlanVos" ofType="com.sportsxdata.adms.model.ThemeEditPlanVo">
+        <id column="tid" property="tid" ></id>
+        <result column="tname" property="tname"></result>
+        <collection property="planActionRelationVos" ofType="com.sportsxdata.adms.model.PlanActionRelationVo">
+          <id column="pid" property="pid" ></id>
+          <result column="group_num" property="groupNum" />
+          <result column="time" property="time"  />
+          <result column="strength" property="strength"  />
+          <result column="interval" property="interval"  />
+          <result column="duration" property="duration" />
+        </collection>
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="editPlanSearch" resultMap="EditPlanResultMap">
+      SELECT
+        plan.main_plan_id as main_plan_id,
+        plan.id as plan_id,
+        plan.belong_coach as belong_coach,
+        sec.id as sid,
+        sec.name as sname,
+        theme.id as tid,
+        theme.name as tname,
+        rel.time as time,
+        rel.strength as strength,
+        rel.interval as `interval`,
+        rel.duration as duration,
+        act.id as actid,
+        act.name as actname,
+        MAX(rel.group_num) as group_num
+      FROM
+          adms_plan_action_relation rel,
+          adms_training_plan plan,
+          adms_action act,
+          adms_theme theme,
+          adms_section sec
+      WHERE
+          rel.adms_training_plane_id = plan.id
+              AND plan.id = #{pid}
+              AND act.id = rel.adms_action_id
+              AND theme.id = rel.theme_id
+              AND theme.adms_section_id = sec.id
+              AND plan.coach_id = #{coachId}
+      GROUP BY theme.adms_section_id,theme.id, rel.adms_action_id,rel.`order`
+      ORDER BY rel.create_time;
+  </select>
+
+  <resultMap id="PlanInfoMap" type="com.sportsxdata.adms.model.TrainingPlanInfo">
+    <id property="planId" column="planId"></id>
+    <result property="remark" column="remark" />
+    <result property="startTime" column="startTime" />
+    <result property="endTime" column="endTime" />
+    <result property="site" column="site" />
+    <result property="stage" column="stage" />
+    <result property="teamName" column="teamName" />
+    <result property="target" column="target" />
+    <result property="belongcoach" column="belongcoach" />
+    <collection property="sectionVoList" ofType="com.sportsxdata.adms.model.SectionVoByPdf">
+      <id property="aparid" column="aparid"/>
+      <result property="sectionId" column="sectionId" />
+      <result property="themeId" column="themeId" />
+      <result property="themeName" column="themeName" />
+      <result property="actionId" column="actionId" />
+      <result property="actionName" column="actionName" />
+      <result property="duration" column="duration" />
+      <result property="interval" column="interval" />
+      <result property="strength" column="strength" />
+      <result property="time" column="time" />
+      <result property="groupNum" column="groupNum" />
+      <result property="aremark" column="aremark" />
+    </collection>
+
+  </resultMap>
+  <select id="selectInfoByPlanId" resultMap="PlanInfoMap">
+    SELECT
+        atp.id as planId,
+        (CASE when (atp.traning_remark IS NULL) then '' else atp.traning_remark end) as remark,
+        atp.traning_start_time as startTime,
+        atp.traning_end_time as endTime,
+        (CASE when (atp.traning_site IS NULL) then '' else atp.traning_site end) as site,
+        (CASE when (atp.traning_stage IS NULL) then '' else atp.traning_stage end) as stage,
+        (CASE when (atp.traning_team_name IS NULL) then '' else atp.traning_team_name end) as teamName,
+        (CASE when (atp.traning_target IS NULL) then '' else atp.traning_target end) as target,
+        (CASE when (atp.belong_coach IS NULL) then '' else atp.belong_coach end) as belongcoach,
+        `at`.adms_section_id sectionId,
+        `at`.id as themeId,
+        apar.theme_id,
+        (CASE when (`at`.`name` IS NULL) then '' else `at`.`name` end) as themeName,
+        apar.id as aparid,
+        aa1.id as actionId,
+        (CASE when (aa1.`name` IS NULL) then '' else aa1.`name` end) as actionName,
+        (CASE when (apar.duration IS NULL) then '-'
+				when (apar.duration = '' ) then '-' else apar.duration end) as duration,
+        (CASE when (apar.interval IS NULL) then '-'
+				when (apar.interval = '' ) then '-' else apar.interval end) as `interval`,
+        (CASE when (apar.strength IS NULL ) then '-'
+				when (apar.strength = 'kg' ) then '-'
+                when (apar.strength = '圈' ) then '-'
+                when (apar.strength = 's' ) then '-'
+                when (apar.strength = 'N' ) then '-'
+                when (apar.strength = 'min' ) then '-'
+                when (apar.strength = 'S' ) then '-'
+                    else apar.strength end) as strength,
+        (CASE when (apar.time IS NULL) then '-'
+				when (apar.time = '' ) then '-'else apar.time end) as time,
+        (CASE when (MAX(apar.group_num) IS NULL) then '' else MAX(apar.group_num) end) as groupNum,
+        (CASE when (apar.remark IS NULL) then '' else apar.remark end) as aremark,
+        (CASE when (apar.create_time IS NULL) then '' else apar.create_time end) as create_time
+    FROM
+        adms_training_plan atp,
+        adms_plan_action_relation apar,
+        adms_action aa1,
+        adms_theme_action_relation atar,
+        adms_theme `at`
+    WHERE
+        atp.id = apar.adms_training_plane_id
+    AND
+        apar.adms_action_id = aa1.id
+    AND
+        aa1.id = atar.adms_action_id
+    AND
+        atar.adms_theme_id = `at`.id
+    AND
+        atar.adms_theme_id = apar.theme_id
+    AND
+        atp.id = #{VALUE }
+    GROUP BY `at`.adms_section_id,`at`.id,aa1.id,apar.`order`
+    ORDER BY apar.create_time;
+  </select>
+
+    <select id="getOnePlanInfo" resultMap="planActRelResultMap">
+        SELECT
+        atp.id as oid,
+        atp.traning_start_time as t_starttime,
+        atp.traning_end_time as t_endtime,
+        sec.id as sid,
+        sec.name as sname,
+        att.id as tid,
+        att.name as tname,
+        apar.id as pid,
+        apar.adms_action_id as actid,
+        aa2.name as actname,
+        apar.*
+        FROM
+        adms_training_plan atp,
+        adms_plan_action_relation apar,
+        adms_athlete aa1,
+        adms_action aa2,
+        adms_theme_action_relation atar,
+        adms_theme att,
+        adms_section sec
+        WHERE
+        atp.id = apar.adms_training_plane_id
+        AND
+        aa1.id = apar.athlete_id
+        AND
+        aa2.id = apar.adms_action_id
+        and
+        aa2.id = atar.adms_action_id
+        and
+        atar.adms_theme_id = att.id
+        and
+        apar.theme_id = att.id
+        and
+        att.adms_section_id = sec.id
+        AND
+        atp.id = #{planId}
+        and
+        aa1.id = #{athleteId}
+        group by sec.id , att.id , aa2.id ,apar.group_num, apar.`order`
+        ORDER BY apar.create_time ,apar.`order`;
+    </select>
+</mapper>

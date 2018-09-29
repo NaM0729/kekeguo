@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.FunctionDataMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.FunctionData" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="adms_athlete_id" property="admsAthleteId" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="measure_time" property="measureTime" jdbcType="TIMESTAMP" />
+    <result column="fei_huo_liang" property="feiHuoLiang" jdbcType="VARCHAR" />
+    <result column="she_xue_fen_shu" property="sheXueFenShu" jdbcType="VARCHAR" />
+    <result column="xin_zhi_shu" property="xinZhiShu" jdbcType="VARCHAR" />
+    <result column="static_bpm" property="staticBpm" jdbcType="VARCHAR" />
+    <result column="shou_suo_ya" property="shouSuoYa" jdbcType="VARCHAR" />
+    <result column="max_bpm" property="maxBpm" jdbcType="VARCHAR" />
+    <result column="max_she_yang_liang" property="maxSheYangLiang" jdbcType="VARCHAR" />
+    <result column="shu_zhang_ya" property="shuZhangYa" jdbcType="VARCHAR" />
+    <result column="ru_suan_wu_yang_fa" property="ruSuanWuYangFa" jdbcType="VARCHAR" />
+    <result column="hong_xi_bao_ya_ji" property="hongXiBaoYaJi" jdbcType="VARCHAR" />
+    <result column="xue_niao_su" property="xueNiaoSu" jdbcType="VARCHAR" />
+    <result column="xue_ru_suan" property="xueRuSuan" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, adms_athlete_id, modify_time, create_time, measure_time, fei_huo_liang, she_xue_fen_shu, 
+    xin_zhi_shu, static_bpm, shou_suo_ya, max_bpm, max_she_yang_liang, shu_zhang_ya, 
+    ru_suan_wu_yang_fa, hong_xi_bao_ya_ji, xue_niao_su, xue_ru_suan
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_function_data
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_function_data
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.FunctionData" >
+    insert into adms_function_data (id, adms_athlete_id, modify_time, 
+      create_time, measure_time, fei_huo_liang, 
+      she_xue_fen_shu, xin_zhi_shu, static_bpm, 
+      shou_suo_ya, max_bpm, max_she_yang_liang, 
+      shu_zhang_ya, ru_suan_wu_yang_fa, hong_xi_bao_ya_ji, 
+      xue_niao_su, xue_ru_suan)
+    values (#{id,jdbcType=VARCHAR}, #{admsAthleteId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{measureTime,jdbcType=TIMESTAMP}, #{feiHuoLiang,jdbcType=VARCHAR}, 
+      #{sheXueFenShu,jdbcType=VARCHAR}, #{xinZhiShu,jdbcType=VARCHAR}, #{staticBpm,jdbcType=VARCHAR}, 
+      #{shouSuoYa,jdbcType=VARCHAR}, #{maxBpm,jdbcType=VARCHAR}, #{maxSheYangLiang,jdbcType=VARCHAR}, 
+      #{shuZhangYa,jdbcType=VARCHAR}, #{ruSuanWuYangFa,jdbcType=VARCHAR}, #{hongXiBaoYaJi,jdbcType=VARCHAR}, 
+      #{xueNiaoSu,jdbcType=VARCHAR}, #{xueRuSuan,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.FunctionData" >
+    insert into adms_function_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="measureTime != null" >
+        measure_time,
+      </if>
+      <if test="feiHuoLiang != null" >
+        fei_huo_liang,
+      </if>
+      <if test="sheXueFenShu != null" >
+        she_xue_fen_shu,
+      </if>
+      <if test="xinZhiShu != null" >
+        xin_zhi_shu,
+      </if>
+      <if test="staticBpm != null" >
+        static_bpm,
+      </if>
+      <if test="shouSuoYa != null" >
+        shou_suo_ya,
+      </if>
+      <if test="maxBpm != null" >
+        max_bpm,
+      </if>
+      <if test="maxSheYangLiang != null" >
+        max_she_yang_liang,
+      </if>
+      <if test="shuZhangYa != null" >
+        shu_zhang_ya,
+      </if>
+      <if test="ruSuanWuYangFa != null" >
+        ru_suan_wu_yang_fa,
+      </if>
+      <if test="hongXiBaoYaJi != null" >
+        hong_xi_bao_ya_ji,
+      </if>
+      <if test="xueNiaoSu != null" >
+        xue_niao_su,
+      </if>
+      <if test="xueRuSuan != null" >
+        xue_ru_suan,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteId != null" >
+        #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="measureTime != null" >
+        #{measureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feiHuoLiang != null" >
+        #{feiHuoLiang,jdbcType=VARCHAR},
+      </if>
+      <if test="sheXueFenShu != null" >
+        #{sheXueFenShu,jdbcType=VARCHAR},
+      </if>
+      <if test="xinZhiShu != null" >
+        #{xinZhiShu,jdbcType=VARCHAR},
+      </if>
+      <if test="staticBpm != null" >
+        #{staticBpm,jdbcType=VARCHAR},
+      </if>
+      <if test="shouSuoYa != null" >
+        #{shouSuoYa,jdbcType=VARCHAR},
+      </if>
+      <if test="maxBpm != null" >
+        #{maxBpm,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSheYangLiang != null" >
+        #{maxSheYangLiang,jdbcType=VARCHAR},
+      </if>
+      <if test="shuZhangYa != null" >
+        #{shuZhangYa,jdbcType=VARCHAR},
+      </if>
+      <if test="ruSuanWuYangFa != null" >
+        #{ruSuanWuYangFa,jdbcType=VARCHAR},
+      </if>
+      <if test="hongXiBaoYaJi != null" >
+        #{hongXiBaoYaJi,jdbcType=VARCHAR},
+      </if>
+      <if test="xueNiaoSu != null" >
+        #{xueNiaoSu,jdbcType=VARCHAR},
+      </if>
+      <if test="xueRuSuan != null" >
+        #{xueRuSuan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.FunctionData" >
+    update adms_function_data
+    <set >
+      <if test="admsAthleteId != null" >
+        adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="measureTime != null" >
+        measure_time = #{measureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feiHuoLiang != null" >
+        fei_huo_liang = #{feiHuoLiang,jdbcType=VARCHAR},
+      </if>
+      <if test="sheXueFenShu != null" >
+        she_xue_fen_shu = #{sheXueFenShu,jdbcType=VARCHAR},
+      </if>
+      <if test="xinZhiShu != null" >
+        xin_zhi_shu = #{xinZhiShu,jdbcType=VARCHAR},
+      </if>
+      <if test="staticBpm != null" >
+        static_bpm = #{staticBpm,jdbcType=VARCHAR},
+      </if>
+      <if test="shouSuoYa != null" >
+        shou_suo_ya = #{shouSuoYa,jdbcType=VARCHAR},
+      </if>
+      <if test="maxBpm != null" >
+        max_bpm = #{maxBpm,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSheYangLiang != null" >
+        max_she_yang_liang = #{maxSheYangLiang,jdbcType=VARCHAR},
+      </if>
+      <if test="shuZhangYa != null" >
+        shu_zhang_ya = #{shuZhangYa,jdbcType=VARCHAR},
+      </if>
+      <if test="ruSuanWuYangFa != null" >
+        ru_suan_wu_yang_fa = #{ruSuanWuYangFa,jdbcType=VARCHAR},
+      </if>
+      <if test="hongXiBaoYaJi != null" >
+        hong_xi_bao_ya_ji = #{hongXiBaoYaJi,jdbcType=VARCHAR},
+      </if>
+      <if test="xueNiaoSu != null" >
+        xue_niao_su = #{xueNiaoSu,jdbcType=VARCHAR},
+      </if>
+      <if test="xueRuSuan != null" >
+        xue_ru_suan = #{xueRuSuan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.FunctionData" >
+    update adms_function_data
+    set adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      measure_time = #{measureTime,jdbcType=TIMESTAMP},
+      fei_huo_liang = #{feiHuoLiang,jdbcType=VARCHAR},
+      she_xue_fen_shu = #{sheXueFenShu,jdbcType=VARCHAR},
+      xin_zhi_shu = #{xinZhiShu,jdbcType=VARCHAR},
+      static_bpm = #{staticBpm,jdbcType=VARCHAR},
+      shou_suo_ya = #{shouSuoYa,jdbcType=VARCHAR},
+      max_bpm = #{maxBpm,jdbcType=VARCHAR},
+      max_she_yang_liang = #{maxSheYangLiang,jdbcType=VARCHAR},
+      shu_zhang_ya = #{shuZhangYa,jdbcType=VARCHAR},
+      ru_suan_wu_yang_fa = #{ruSuanWuYangFa,jdbcType=VARCHAR},
+      hong_xi_bao_ya_ji = #{hongXiBaoYaJi,jdbcType=VARCHAR},
+      xue_niao_su = #{xueNiaoSu,jdbcType=VARCHAR},
+      xue_ru_suan = #{xueRuSuan,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.UserRoleRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.UserRoleRelationKey" >
+    <id column="system_user_id" property="systemUserId" jdbcType="VARCHAR" />
+    <id column="system_role_id" property="systemRoleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.sportsxdata.adms.model.UserRoleRelationKey" >
+    delete from adms_user_role_relation
+    where system_user_id = #{systemUserId,jdbcType=VARCHAR}
+      and system_role_id = #{systemRoleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.UserRoleRelationKey" >
+    insert into adms_user_role_relation (system_user_id, system_role_id)
+    values (#{systemUserId,jdbcType=VARCHAR}, #{systemRoleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.UserRoleRelationKey" >
+    insert into adms_user_role_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemUserId != null" >
+        system_user_id,
+      </if>
+      <if test="systemRoleId != null" >
+        system_role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemUserId != null" >
+        #{systemUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemRoleId != null" >
+        #{systemRoleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

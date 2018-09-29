@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.AthleteMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.Athlete" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="adms_athlete_group_id" property="admsAthleteGroupId" jdbcType="VARCHAR" />
+    <result column="adms_coach_id" property="admsCoachId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="world_code" property="worldCode" jdbcType="VARCHAR" />
+    <result column="level_id" property="levelId" jdbcType="VARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, adms_athlete_group_id, adms_coach_id, name, sex, birthday, area, code, world_code, 
+    level_id, avatar, create_time, modify_time,project_name,organization_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_athlete
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_athlete
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.Athlete" >
+    insert into adms_athlete (id, adms_athlete_group_id, adms_coach_id, 
+      name, sex, birthday, 
+      area, code, world_code, 
+      level_id, avatar, create_time, 
+      modify_time,project_name,organization_name)
+    values (#{id,jdbcType=VARCHAR}, #{admsAthleteGroupId,jdbcType=VARCHAR}, #{admsCoachId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{worldCode,jdbcType=VARCHAR}, 
+      #{levelId,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP},#{projectName,jdbcType=VARCHAR}, #{belongOrganziation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.Athlete" >
+    insert into adms_athlete
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="admsAthleteGroupId != null" >
+        adms_athlete_group_id,
+      </if>
+      <if test="admsCoachId != null" >
+        adms_coach_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="worldCode != null" >
+        world_code,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="belongOrganziation != null" >
+        belong_organziation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="admsAthleteGroupId != null" >
+        #{admsAthleteGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsCoachId != null" >
+        #{admsCoachId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="worldCode != null" >
+        #{worldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="belongOrganziation != null" >
+        belong_organziation,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.Athlete" >
+    update adms_athlete
+    <set >
+      <if test="admsAthleteGroupId != null" >
+        adms_athlete_group_id = #{admsAthleteGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsCoachId != null" >
+        adms_coach_id = #{admsCoachId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="worldCode != null" >
+        world_code = #{worldCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongOrganziation != null" >
+        belong_organziation = #{belongOrganziation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.Athlete" >
+    update adms_athlete
+    set adms_athlete_group_id = #{admsAthleteGroupId,jdbcType=VARCHAR},
+      adms_coach_id = #{admsCoachId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      world_code = #{worldCode,jdbcType=VARCHAR},
+      level_id = #{levelId,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      organization_name = #{organizationName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCode" resultMap="BaseResultMap">
+    select * from adms_athlete WHERE code = #{VALUE }
+  </select>
+
+
+  <select id="selectAthletesByPlanId" resultMap="BaseResultMap">
+    SELECT
+        athlete.*
+    FROM
+        adms_plan_action_relation rel,
+        adms_athlete athlete
+    WHERE
+        rel.adms_training_plane_id = #{planId}
+            AND rel.athlete_id = athlete.id
+    GROUP BY rel.athlete_id;
+  </select>
+
+  <select id="selectAllAthleteByCoachId" resultMap="BaseResultMap">
+    SELECT * from adms_athlete athlete WHERE athlete.adms_coach_id = #{VALUE }
+  </select>
+
+</mapper>

@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  jmx:
+    enabled: false
+  profiles:
+    active: pro
+  freemarker:
+      cache: false
+
+mybatis:
+  mapper-locations: classpath*:com/sportsxdata/adms/dao/mapper/*.xml
+  type-aliases-package: com.sportsxdata.adms.model
+
+---
+
+  ##########################################################
+  ###################  开发环境的profile  ###################
+  ##########################################################
+  spring:
+    profiles: dev
+    datasource:
+
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://rm-2ze212y801r8bu5lao.mysql.rds.aliyuncs.com/adms_test?characterEncoding=utf8&useSSL=false
+      username: root
+      password: Yuantai123
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      password:
+
+  logging:
+    file: classpath:logback.xml
+
+---
+
+  ##########################################################
+  ###################  正式环境的profile  ###################
+  ##########################################################
+  spring:
+    profiles: pro
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: Yuantai123
+      url: jdbc:mysql://rm-2ze212y801r8bu5lao.mysql.rds.aliyuncs.com/yt_adms?characterEncoding=utf8&useSSL=false
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      password:
+
+  logging:
+    file: classpath:logback.xml

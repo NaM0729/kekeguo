@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.RoleMenuRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.RoleMenuRelationKey" >
+    <id column="adms_system_role_id" property="admsSystemRoleId" jdbcType="VARCHAR" />
+    <id column="adms_system_menu_id" property="admsSystemMenuId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.sportsxdata.adms.model.RoleMenuRelationKey" >
+    delete from adms_role_menu_relation
+    where adms_system_role_id = #{admsSystemRoleId,jdbcType=VARCHAR}
+      and adms_system_menu_id = #{admsSystemMenuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.RoleMenuRelationKey" >
+    insert into adms_role_menu_relation (adms_system_role_id, adms_system_menu_id
+      )
+    values (#{admsSystemRoleId,jdbcType=VARCHAR}, #{admsSystemMenuId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.RoleMenuRelationKey" >
+    insert into adms_role_menu_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admsSystemRoleId != null" >
+        adms_system_role_id,
+      </if>
+      <if test="admsSystemMenuId != null" >
+        adms_system_menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admsSystemRoleId != null" >
+        #{admsSystemRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="admsSystemMenuId != null" >
+        #{admsSystemMenuId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

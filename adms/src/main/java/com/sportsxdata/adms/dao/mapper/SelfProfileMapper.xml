@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.SelfProfileMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.SelfProfile" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_athlete_id" property="admsAthleteId" jdbcType="VARCHAR" />
+    <result column="sleep_quality" property="sleepQuality" jdbcType="VARCHAR" />
+    <result column="recover_status" property="recoverStatus" jdbcType="VARCHAR" />
+    <result column="muscle_ache" property="muscleAche" jdbcType="VARCHAR" />
+    <result column="train_status" property="trainStatus" jdbcType="VARCHAR" />
+    <result column="tired_feel" property="tiredFeel" jdbcType="VARCHAR" />
+    <result column="gaiety_feel" property="gaietyFeel" jdbcType="VARCHAR" />
+    <result column="train_power" property="trainPower" jdbcType="VARCHAR" />
+    <result column="disease_feel" property="diseaseFeel" jdbcType="VARCHAR" />
+    <result column="sleep_start_time" property="sleepStartTime" jdbcType="TIMESTAMP" />
+    <result column="sleep_end_time" property="sleepEndTime" jdbcType="TIMESTAMP" />
+    <result column="sleep_duration" property="sleepDuration" jdbcType="VARCHAR" />
+    <result column="resting_heart_rate" property="restingHeartRate" jdbcType="VARCHAR" />
+    <result column="body_status" property="bodyStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, modify_time, adms_athlete_id, sleep_quality, recover_status, muscle_ache, 
+    train_status, tired_feel, gaiety_feel, train_power, disease_feel, sleep_start_time, 
+    sleep_end_time, sleep_duration, resting_heart_rate, body_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_self_profile
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_self_profile
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.SelfProfile" >
+    insert into adms_self_profile (id, create_time, modify_time, 
+      adms_athlete_id, sleep_quality, recover_status, 
+      muscle_ache, train_status, tired_feel, 
+      gaiety_feel, train_power, disease_feel, 
+      sleep_start_time, sleep_end_time, sleep_duration, 
+      resting_heart_rate, body_status)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsAthleteId,jdbcType=VARCHAR}, #{sleepQuality,jdbcType=VARCHAR}, #{recoverStatus,jdbcType=VARCHAR}, 
+      #{muscleAche,jdbcType=VARCHAR}, #{trainStatus,jdbcType=VARCHAR}, #{tiredFeel,jdbcType=VARCHAR}, 
+      #{gaietyFeel,jdbcType=VARCHAR}, #{trainPower,jdbcType=VARCHAR}, #{diseaseFeel,jdbcType=VARCHAR}, 
+      #{sleepStartTime,jdbcType=TIMESTAMP}, #{sleepEndTime,jdbcType=TIMESTAMP}, #{sleepDuration,jdbcType=VARCHAR}, 
+      #{restingHeartRate,jdbcType=VARCHAR}, #{bodyStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.SelfProfile" >
+    insert into adms_self_profile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id,
+      </if>
+      <if test="sleepQuality != null" >
+        sleep_quality,
+      </if>
+      <if test="recoverStatus != null" >
+        recover_status,
+      </if>
+      <if test="muscleAche != null" >
+        muscle_ache,
+      </if>
+      <if test="trainStatus != null" >
+        train_status,
+      </if>
+      <if test="tiredFeel != null" >
+        tired_feel,
+      </if>
+      <if test="gaietyFeel != null" >
+        gaiety_feel,
+      </if>
+      <if test="trainPower != null" >
+        train_power,
+      </if>
+      <if test="diseaseFeel != null" >
+        disease_feel,
+      </if>
+      <if test="sleepStartTime != null" >
+        sleep_start_time,
+      </if>
+      <if test="sleepEndTime != null" >
+        sleep_end_time,
+      </if>
+      <if test="sleepDuration != null" >
+        sleep_duration,
+      </if>
+      <if test="restingHeartRate != null" >
+        resting_heart_rate,
+      </if>
+      <if test="bodyStatus != null" >
+        body_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsAthleteId != null" >
+        #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepQuality != null" >
+        #{sleepQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverStatus != null" >
+        #{recoverStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="muscleAche != null" >
+        #{muscleAche,jdbcType=VARCHAR},
+      </if>
+      <if test="trainStatus != null" >
+        #{trainStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tiredFeel != null" >
+        #{tiredFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="gaietyFeel != null" >
+        #{gaietyFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="trainPower != null" >
+        #{trainPower,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseFeel != null" >
+        #{diseaseFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepStartTime != null" >
+        #{sleepStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sleepEndTime != null" >
+        #{sleepEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sleepDuration != null" >
+        #{sleepDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="restingHeartRate != null" >
+        #{restingHeartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyStatus != null" >
+        #{bodyStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.SelfProfile" >
+    update adms_self_profile
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsAthleteId != null" >
+        adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepQuality != null" >
+        sleep_quality = #{sleepQuality,jdbcType=VARCHAR},
+      </if>
+      <if test="recoverStatus != null" >
+        recover_status = #{recoverStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="muscleAche != null" >
+        muscle_ache = #{muscleAche,jdbcType=VARCHAR},
+      </if>
+      <if test="trainStatus != null" >
+        train_status = #{trainStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tiredFeel != null" >
+        tired_feel = #{tiredFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="gaietyFeel != null" >
+        gaiety_feel = #{gaietyFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="trainPower != null" >
+        train_power = #{trainPower,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseFeel != null" >
+        disease_feel = #{diseaseFeel,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepStartTime != null" >
+        sleep_start_time = #{sleepStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sleepEndTime != null" >
+        sleep_end_time = #{sleepEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sleepDuration != null" >
+        sleep_duration = #{sleepDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="restingHeartRate != null" >
+        resting_heart_rate = #{restingHeartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyStatus != null" >
+        body_status = #{bodyStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.SelfProfile" >
+    update adms_self_profile
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_athlete_id = #{admsAthleteId,jdbcType=VARCHAR},
+      sleep_quality = #{sleepQuality,jdbcType=VARCHAR},
+      recover_status = #{recoverStatus,jdbcType=VARCHAR},
+      muscle_ache = #{muscleAche,jdbcType=VARCHAR},
+      train_status = #{trainStatus,jdbcType=VARCHAR},
+      tired_feel = #{tiredFeel,jdbcType=VARCHAR},
+      gaiety_feel = #{gaietyFeel,jdbcType=VARCHAR},
+      train_power = #{trainPower,jdbcType=VARCHAR},
+      disease_feel = #{diseaseFeel,jdbcType=VARCHAR},
+      sleep_start_time = #{sleepStartTime,jdbcType=TIMESTAMP},
+      sleep_end_time = #{sleepEndTime,jdbcType=TIMESTAMP},
+      sleep_duration = #{sleepDuration,jdbcType=VARCHAR},
+      resting_heart_rate = #{restingHeartRate,jdbcType=VARCHAR},
+      body_status = #{bodyStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

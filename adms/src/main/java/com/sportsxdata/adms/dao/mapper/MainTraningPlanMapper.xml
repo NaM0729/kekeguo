@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sportsxdata.adms.dao.MainTraningPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.sportsxdata.adms.model.MainTraningPlan" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="adms_coach_id" property="admsCoachId" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="athlete_num" property="athleteNum" jdbcType="VARCHAR" />
+    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+    <result column="traning_stage" property="traningStage" jdbcType="VARCHAR" />
+    <result column="theme1_project_num" property="theme1ProjectNum" jdbcType="VARCHAR" />
+    <result column="theme2_project_num" property="theme2ProjectNum" jdbcType="VARCHAR" />
+    <result column="theme3_project_num" property="theme3ProjectNum" jdbcType="VARCHAR" />
+    <result column="plan_status" property="planStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, modify_time, adms_coach_id, start_date, end_date, start_time, end_time, 
+    athlete_num, team_name, traning_stage, theme1_project_num, theme2_project_num, theme3_project_num, 
+    plan_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adms_main_traning_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adms_main_traning_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sportsxdata.adms.model.MainTraningPlan" >
+    insert into adms_main_traning_plan (id, create_time, modify_time, 
+      adms_coach_id, start_date, end_date, 
+      start_time, end_time, athlete_num, 
+      team_name, traning_stage, theme1_project_num, 
+      theme2_project_num, theme3_project_num, plan_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{admsCoachId,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{athleteNum,jdbcType=VARCHAR}, 
+      #{teamName,jdbcType=VARCHAR}, #{traningStage,jdbcType=VARCHAR}, #{theme1ProjectNum,jdbcType=VARCHAR}, 
+      #{theme2ProjectNum,jdbcType=VARCHAR}, #{theme3ProjectNum,jdbcType=VARCHAR}, #{planStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sportsxdata.adms.model.MainTraningPlan" >
+    insert into adms_main_traning_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="admsCoachId != null" >
+        adms_coach_id,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="athleteNum != null" >
+        athlete_num,
+      </if>
+      <if test="teamName != null" >
+        team_name,
+      </if>
+      <if test="traningStage != null" >
+        traning_stage,
+      </if>
+      <if test="theme1ProjectNum != null" >
+        theme1_project_num,
+      </if>
+      <if test="theme2ProjectNum != null" >
+        theme2_project_num,
+      </if>
+      <if test="theme3ProjectNum != null" >
+        theme3_project_num,
+      </if>
+      <if test="planStatus != null" >
+        plan_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsCoachId != null" >
+        #{admsCoachId,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteNum != null" >
+        #{athleteNum,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="traningStage != null" >
+        #{traningStage,jdbcType=VARCHAR},
+      </if>
+      <if test="theme1ProjectNum != null" >
+        #{theme1ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="theme2ProjectNum != null" >
+        #{theme2ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="theme3ProjectNum != null" >
+        #{theme3ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="planStatus != null" >
+        #{planStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sportsxdata.adms.model.MainTraningPlan" >
+    update adms_main_traning_plan
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admsCoachId != null" >
+        adms_coach_id = #{admsCoachId,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="athleteNum != null" >
+        athlete_num = #{athleteNum,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null" >
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="traningStage != null" >
+        traning_stage = #{traningStage,jdbcType=VARCHAR},
+      </if>
+      <if test="theme1ProjectNum != null" >
+        theme1_project_num = #{theme1ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="theme2ProjectNum != null" >
+        theme2_project_num = #{theme2ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="theme3ProjectNum != null" >
+        theme3_project_num = #{theme3ProjectNum,jdbcType=VARCHAR},
+      </if>
+      <if test="planStatus != null" >
+        plan_status = #{planStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sportsxdata.adms.model.MainTraningPlan" >
+    update adms_main_traning_plan
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      adms_coach_id = #{admsCoachId,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      athlete_num = #{athleteNum,jdbcType=VARCHAR},
+      team_name = #{teamName,jdbcType=VARCHAR},
+      traning_stage = #{traningStage,jdbcType=VARCHAR},
+      theme1_project_num = #{theme1ProjectNum,jdbcType=VARCHAR},
+      theme2_project_num = #{theme2ProjectNum,jdbcType=VARCHAR},
+      theme3_project_num = #{theme3ProjectNum,jdbcType=VARCHAR},
+      plan_status = #{planStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
