@@ -14,4 +14,5 @@ public class DataResult {
     public static DataResult success(String message){
         return new DataResult(message);
     }
+
 }
