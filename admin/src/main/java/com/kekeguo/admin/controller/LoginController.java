@@ -24,8 +24,8 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public DataResult Login() {
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
+    public DataResult Login(@RequestParam("username") String username,@RequestParam("password") String password) {
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
@@ -37,10 +37,15 @@ public class LoginController {
         return DataResult.success(token.toString());
     }
 
+    @RequestMapping("logout")
+    public DataResult logout(){
+        SecurityUtils.getSubject().logout();
+        return DataResult.success("退出成功");
+    }
+
     @RequestMapping("update")
-    public DataResult updateUser(@RequestParam("token") String token){
-        Subject subject = SecurityUtils.getSubject();
-        boolean admin = subject.hasRole("admin");
+    @RequiresPermissions("user:update")
+    public DataResult updateUser(){
 
         return DataResult.success("admin");
     }
