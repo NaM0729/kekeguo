@@ -1,12 +1,10 @@
 package com.kekeguo.admin.shiro;
 
-import com.kekeguo.admin.data.SessionData;
 import com.kekeguo.admin.model.UserModel;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
@@ -25,13 +23,14 @@ import java.util.Set;
 @Component
 public class UserRealm extends AuthorizingRealm {
 
-    private static Map<String, UserModel> userMap = new HashMap<String, UserModel>();
+    private static Map<String, String> userMap = new HashMap<String, String>();
 
     static {
         //使用Map模拟数据库获取User表信息
-        userMap.put("administrator", new UserModel("zhang", "123"));
-        userMap.put("jack", new UserModel("jack", "123"));
-        userMap.put("jean", new UserModel("jean", "123"));
+        userMap.put("zhang","123");
+        userMap.put("li","123");
+        userMap.put("zhao","123");
+        userMap.put("gao","123");
     }
 
 
@@ -43,24 +42,29 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         // 获取用户信息
-        UserModel user = (UserModel) SecurityUtils.getSubject().getPrincipals();
+//        String user = SecurityUtils.getSubject().getPrincipals();
+        String username = (String) principals.getPrimaryPrincipal();
 
         // 从数据库中查找用户的权限列表
+        Set<String> roles = getRolesByUserName(username);
+        Set<String> permissions = getPermissionsByUserName(username);
+
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-
-        if ("zhang".equals(user.username)) {
-            // 获取用户角色
-            Set<String> roleSet = new HashSet<String>();
-            roleSet.add("admin");
-            info.setRoles(roleSet);
-
-            //获取用户权限
-            Set<String> permissionSet = new HashSet<String>();
-            permissionSet.add("user:update");
-            info.setStringPermissions(permissionSet);
-        }
-
+        info.setRoles(roles);
+        info.setStringPermissions(permissions);
         return info;
+    }
+
+    private Set<String> getPermissionsByUserName(String username) {
+        Set<String> permissionSet = new HashSet<String>();
+        permissionSet.add("user:update");
+        return permissionSet;
+    }
+
+    private Set<String> getRolesByUserName(String username) {
+        Set<String> roleSet = new HashSet<String>();
+        roleSet.add("admin");
+        return roleSet;
     }
 
     /**
@@ -74,17 +78,18 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         String username = usernamePasswordToken.getUsername();
-        // 数据库中比对用户是否存在
 
-        if (StringUtils.isEmpty(username)) {
-            throw new UnknownAccountException();
-        }
-        String password = String.valueOf(usernamePasswordToken.getPassword());
+        // 数据库中比对用户是否存在
+        String password = checkPasswordByUserName(username);
         if (StringUtils.isEmpty(password)) {
             throw new IncorrectCredentialsException();
         }
 
         AuthenticationInfo info = new SimpleAuthenticationInfo(username, password, getName());
         return info;
+    }
+
+    private String checkPasswordByUserName(String username) {
+        return userMap.get(username);
     }
 }

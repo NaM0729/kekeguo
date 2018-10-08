@@ -1,6 +1,8 @@
 package com.kekeguo.admin.shiro;
 
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -58,14 +60,24 @@ public class ShiroConfig {
     }
 
     @Bean
-    public SecurityManager securityManager(UserRealm userRealm) {
+    public SessionManager sessionManager(ShiroSession shiroSession){
+        DefaultSessionManager sessionManager = new DefaultSessionManager();
+        //设置session过期时间为1小时(单位：毫秒)，默认为30分钟
+        sessionManager.setGlobalSessionTimeout(60 * 60 * 1000);
+        sessionManager.setSessionValidationSchedulerEnabled(true);
+        sessionManager.setSessionDAO(shiroSession);
+        return  sessionManager;
+    }
+
+    @Bean
+    public SecurityManager securityManager(UserRealm userRealm,SessionManager sessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(userRealm);
         // 自定义缓存实现 使用redis
         //securityManager.setCacheManager(cacheManager());
         // 自定义session管理 使用redis
-        //securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(sessionManager);
         return securityManager;
     }
 

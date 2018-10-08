@@ -1,11 +1,13 @@
 package com.kekeguo.admin.controller;
 
 import com.kekeguo.admin.util.DataResult;
+import com.kekeguo.admin.util.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,16 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @ResponseBody
 public class LoginController {
 
-
-    @RequestMapping("/loginTest")
-    public DataResult Login(@RequestParam("username") String username) {
-        return DataResult.success(username);
-    }
-
     @RequestMapping("/login")
     public DataResult Login(@RequestParam("username") String username,@RequestParam("password") String password) {
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
         }catch(UnknownAccountException ex) {
@@ -39,7 +35,8 @@ public class LoginController {
 
     @RequestMapping("logout")
     public DataResult logout(){
-        SecurityUtils.getSubject().logout();
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         return DataResult.success("退出成功");
     }
 
@@ -48,6 +45,14 @@ public class LoginController {
     public DataResult updateUser(){
 
         return DataResult.success("admin");
+    }
+
+    @RequestMapping("delete")
+    @RequiresPermissions("user:delete")
+//    @RequiresRoles("admin")
+    public DataResult deleteUser(){
+
+        return DataResult.success("delete");
     }
 
 }
