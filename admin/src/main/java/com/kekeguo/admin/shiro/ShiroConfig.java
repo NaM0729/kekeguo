@@ -6,8 +6,8 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
@@ -33,11 +33,11 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager);
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilter.setLoginUrl("/template/login.html");
+        shiroFilter.setLoginUrl("/login.html");
         // 登录成功后要跳转的链接
-        shiroFilter.setSuccessUrl("/template/index.html");
+        shiroFilter.setSuccessUrl("/static/template/index.html");
         // 未授权界面;
-        shiroFilter.setUnauthorizedUrl("/template/404.html");
+        shiroFilter.setUnauthorizedUrl("/static/template/404.html");
 
         //自定义拦截器
         Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
@@ -51,10 +51,11 @@ public class ShiroConfig {
         // 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
         // authc:所有url都必须认证通过才可以访问;
         // anon:所有url都都可以匿名访问
-        filterChainDefinitionMap.put("/template/login.html", "anon");
+//        filterChainDefinitionMap.put("/template/login.html", "anon");
         filterChainDefinitionMap.put("/logout.html", "anon");
-        filterChainDefinitionMap.put("/update", "authc");
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/update", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilter;

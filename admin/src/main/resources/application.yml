@@ -1,8 +1,12 @@
 server:
   port: 8088
+  servlet:
+    context-path: /kekeguo
 spring:
   application:
     name: admin
   redis:
     host: 127.0.0.1
     password:
+  thymeleaf:
+    prefix: classpath:/static/template/

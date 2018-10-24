@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @ResponseBody
 public class LoginController {
 
-    @GetMapping("/login")
+    @GetMapping("/login1")
     public DataResult Login(@RequestParam("username") String username,@RequestParam("password") String password) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
