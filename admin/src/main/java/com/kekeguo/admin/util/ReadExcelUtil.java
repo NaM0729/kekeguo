@@ -57,10 +57,8 @@ public class ReadExcelUtil {
                     }
                 }
                 objectList.add(mapRow);
-//                mapRow.clear();
             }
             map.put(sheetName, objectList);
-//            objectList.clear();
         }
         return map;
     }
