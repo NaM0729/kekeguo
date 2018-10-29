@@ -7,17 +7,17 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 public class ReadExcelUtilTest extends AdminApplicationTest {
 
     @Test
     public void getDatas() {
-        String path = "/Users/admin/Documents/TestImportExcel/subjectDatas.xlsx";
+        String path = "/Users/admin/Documents/TestImportExcel/test1.xlsx";
         File file = new File(path);
         try {
             Workbook workbook = ReadExcelUtil.creatWorkbook(file);
-            List<List> datas = ReadExcelUtil.getDatas(workbook, 1);
+            Map<String, Object> datas = ReadExcelUtil.getDatas(workbook,1 );
             System.out.println(datas);
         } catch (IOException e) {
             e.printStackTrace();

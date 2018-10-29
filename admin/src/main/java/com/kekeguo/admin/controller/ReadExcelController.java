@@ -53,7 +53,6 @@ public class ReadExcelController {
      */
     @PostMapping("saveExcel2")
     public DataResult readAllExcel(MultipartFile excelFile) throws Exception {
-        List<Map<String, String>> excelList;
         if (ObjectUtils.isEmpty(excelFile)) {
             return DataResult.error("Excel不可为空");
         }
@@ -66,7 +65,7 @@ public class ReadExcelController {
             book = null;
             return DataResult.error("请上传Excel文件");
         }
-        List<List> datas = ReadExcelUtil.getDatas(book, 1);
+        Map<String, Object> datas = ReadExcelUtil.getDatas(book, 1);
         System.out.println(datas);
         return DataResult.success("读取完成");
     }
