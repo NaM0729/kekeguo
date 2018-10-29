@@ -19,7 +19,8 @@
                    accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                    type="file">
         </div>
-        <button class="btn btn-primary" id="submitId" @click="testExcel">确定</button>
+        <button class="btn btn-primary" id="submitId1" @click="testExcel1">确定(读一个sheet)</button>
+        <button class="btn btn-primary" id="submitId2" @click="testExcel2">确定(读多个sheet)</button>
     </div>
     <script>
         function createXHR() {
@@ -60,9 +61,19 @@
         new Vue({
             el: '#upload',
             methods: {
-                testExcel: function (event) {
+                testExcel1: function (event) {
                     var excelFile = document.getElementById("excelFile").files[0];
-                    var url = "/kekeguo/saveExcel";
+                    var url = "/kekeguo/saveExcel1";
+                    xhr = createXHR()
+                    var formData = new FormData();
+                    formData.append("excelFile", excelFile);
+                    xhr.open("POST", url, true);
+                    xhr.onreadystatechange = processResponse;
+                    xhr.send(formData);
+                },
+                testExcel2: function (event) {
+                    var excelFile = document.getElementById("excelFile").files[0];
+                    var url = "/kekeguo/saveExcel2";
                     xhr = createXHR()
                     var formData = new FormData();
                     formData.append("excelFile", excelFile);
