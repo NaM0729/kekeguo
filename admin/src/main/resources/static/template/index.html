@@ -3,17 +3,78 @@
 <head>
     <meta charset="UTF-8"/>
     <title>第一个HTML页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 </head>
+
 <body>
 <h1>Hello Spring Boot!!!</h1>
 <p th:text="${hello}"></p>
 
 <fieldset>
     <h2>上传文件</h2>
-    <form action="/kekeguo/saveExcel" method="post" enctype="multipart/form-data">
-        选择文件:<input type="file" name="excelFile">
-        <input type="submit" value="上传">
-    </form>
+    <div class="form-group" id="upload">
+        <div class="col-sm-2 control-label">上传excel</div>
+        <div class="out" style="padding-top: 6px;">
+            <input id="excelFile" style="display: inline-block" readonly
+                   accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                   type="file">
+        </div>
+        <button class="btn btn-primary" id="submitId" @click="testExcel">确定</button>
+    </div>
+    <script>
+        function createXHR() {
+            if (typeof XMLHttpRequest != "undefined") {
+                return new XMLHttpRequest();
+            } else if (typeof ActiveXObject != "undefined") {
+                if (typeof arguments.callee.activeXString != "string") {
+                    var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"];
+                    for (var i = 0, len = versions.length; i < len; i++) {
+                        try {
+                            var xhr = new ActiveXObject(versions[i]);
+                            arguments.callee.activeXString = versions[i];
+                            return xhr;
+                        } catch (e) {
+                            //跳过
+                        }
+                    }
+                }
+                return new ActiveXObject(arguments.callee.activeXString);
+            } else {
+                throw new Error("No XHR object available")
+            }
+        }
+        function processResponse() {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {//数据接受完成
+                var data = JSON.parse(xhr.responseText);
+                if (data.code == 0) {
+                    alert('操作成功', function (index) {
+                        vm.refresh();
+                    });
+                } else {
+                    alert(data.msg);
+                }
+            }
+        }
+
+        new Vue({
+            el: '#upload',
+            methods: {
+                testExcel: function (event) {
+                    var excelFile = document.getElementById("excelFile").files[0];
+                    var url = "/kekeguo/saveExcel";
+                    xhr = createXHR()
+                    var formData = new FormData();
+                    formData.append("excelFile", excelFile);
+                    xhr.open("POST", url, true);
+                    xhr.onreadystatechange = processResponse;
+                    xhr.send(formData);
+                }
+            }
+        });
+    </script>
+
 </fieldset>
 </body>
+
 </html>
