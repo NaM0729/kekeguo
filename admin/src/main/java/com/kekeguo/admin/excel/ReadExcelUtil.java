@@ -1,4 +1,4 @@
-package com.kekeguo.admin.util;
+package com.kekeguo.admin.excel;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -27,49 +27,60 @@ public class ReadExcelUtil {
      * @return
      * @throws IOException
      */
-    public static Map<String, Object> getDatas(Workbook workbook, int ignoreRows) throws IOException, InvalidFormatException {
-
+    public static Map<String, Object> getDatasAndSheet(Workbook workbook, int ignoreRows) throws IOException, InvalidFormatException {
         Map<String, Object> map = new HashMap<>();
-        List<Map> objectList = new ArrayList<>();
-        int rowSize = 0;
         for (int sheetIndex = 0; sheetIndex < workbook.getNumberOfSheets(); sheetIndex++) {
             Sheet sheetAt = workbook.getSheetAt(sheetIndex);  //取sheet页
             String sheetName = sheetAt.getSheetName();
-
-            // 第一行为标题，不取
-            Row rowOne = sheetAt.getRow(0);
-            Map<String, Object> mapRow = new HashMap<>();
-            for (int rowIndex = ignoreRows; rowIndex <= sheetAt.getLastRowNum(); rowIndex++) {
-
-                Row row = sheetAt.getRow(rowIndex);   //取行信息
-                if (StringUtils.isEmpty(row)) {
-                    continue;
-                }
-                int tempRowSize = row.getLastCellNum() + 1;
-                if (tempRowSize > rowSize) {
-                    rowSize = tempRowSize;
-                }
-                for (short columnIndex = 0; columnIndex <= row.getLastCellNum(); columnIndex++) {
-                    Cell cell = row.getCell(columnIndex);
-                    if (cell != null) {
-                        mapRow.put(String.valueOf(rowOne.getCell(columnIndex)), getCellValue(cell));
-                    }
-                }
-                objectList.add(mapRow);
-            }
-            map.put(sheetName, objectList);
+            map.put(sheetName, getDatasAndRow(sheetAt, ignoreRows,workbook));
         }
         return map;
     }
 
     /**
+     * 读取每个sheet页的数据
+     * @param sheetAt
+     * @param ignoreRows
+     * @return
+     */
+    public static List<Map> getDatasAndRow(Sheet sheetAt, int ignoreRows,Workbook workbook) {
+        if(sheetAt==null){
+             sheetAt = workbook.getSheetAt(0);
+        }
+        List<Map> objectList = new ArrayList<>();
+        int rowSize = 0;
+        // 第一行为标题，不取
+        Row rowOne = sheetAt.getRow(0);
+        for (int rowIndex = ignoreRows; rowIndex <= sheetAt.getLastRowNum(); rowIndex++) {
+            Map<String, Object> mapRow = new HashMap<>();
+            Row row = sheetAt.getRow(rowIndex);   //取行信息
+            if (StringUtils.isEmpty(row)) {
+                continue;
+            }
+            int tempRowSize = row.getLastCellNum() + 1;
+            if (tempRowSize > rowSize) {
+                rowSize = tempRowSize;
+            }
+            for (short columnIndex = 0; columnIndex <= row.getLastCellNum(); columnIndex++) {
+                Cell cell = row.getCell(columnIndex);
+                if (cell != null) {
+                    mapRow.put(String.valueOf(rowOne.getCell(columnIndex)), getCellValue(cell));
+                }
+            }
+            objectList.add(mapRow);
+        }
+        return objectList;
+    }
+
+    /**
      * 另外如果日期中有精确到日，精确到秒不同精度的，可以用cell.getCellStyle().getDataFormat()或cell.getCellStyle().getDataFormatString()来获取格式。
+     *
      * @param cell
      * @return
      */
     //获取xlsx单元格数据
     public static String getCellValue(Cell cell) {
-        String  cellValue = "";
+        String cellValue = "";
         if (cell == null) {
             return cellValue;
         }

@@ -3,7 +3,7 @@ package com.kekeguo.admin.controller;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.kekeguo.admin.util.DataResult;
-import com.kekeguo.admin.util.ReadExcelUtil;
+import com.kekeguo.admin.excel.ReadExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -14,9 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * @author zhangyuna
@@ -65,7 +62,7 @@ public class ReadExcelController {
             book = null;
             return DataResult.error("请上传Excel文件");
         }
-        Map<String, Object> datas = ReadExcelUtil.getDatas(book, 1);
+        Map<String, Object> datas = ReadExcelUtil.getDatasAndSheet(book, 1);
         System.out.println(datas);
         return DataResult.success("读取完成");
     }

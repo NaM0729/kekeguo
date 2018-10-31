@@ -1,4 +1,4 @@
-package com.kekeguo.admin.util;
+package com.kekeguo.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

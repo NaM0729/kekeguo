@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @author zhangyuna
  * @date 2018年10月29日16:49:12
  */
-public class lamdbaUtil {
+public class LamdbaUtil {
 
     /**
      * 祛除集合对象中属性相同的数据
@@ -17,7 +17,7 @@ public class lamdbaUtil {
      * @param <T>
      * @return
      */
-    private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
 
         Map<Object, Boolean> seen = new ConcurrentHashMap<>();
 
