@@ -28,8 +28,7 @@ public class ClassifyByExcel {
      */
     public void ClassifyByCell() throws IOException {
         String path = "/Users/admin/Documents/TestImportExcel/ClassifyByExcel.xls";
-        File file = new File(path);
-        Workbook workbook = ReadExcelUtil.creatWorkbook(file);
+        Workbook workbook = ReadExcelUtil.creatWorkbook(path);
         List<Map> lists = ReadExcelUtil.getDatasAndRow(null, 1, workbook);
         // 以知识点编号去重
         List<Map> listDistinct = lists.stream().filter(LamdbaUtil.distinctByKey(map -> map.get("知识点编号"))).collect(Collectors.toList());
