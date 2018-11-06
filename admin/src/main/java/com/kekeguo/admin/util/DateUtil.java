@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @author zhangyuna
  * @date 2018年10月31日10:17:43
  */
-public class DataUtil {
+public class DateUtil {
 
     private static final String[] week = new String[]{"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};
 
@@ -27,10 +27,10 @@ public class DataUtil {
 
 
     public static void main(String[] args) throws ParseException {
-        DataUtil.getWeek("2018-10-27");
-        DataUtil.getWeek("2018-10-28");
-        DataUtil.getWeek("2018-10-29");
-        DataUtil.getWeek("2018-10-30");
-        DataUtil.getWeek("2018-10-31");
+        DateUtil.getWeek("2018-10-27");
+        DateUtil.getWeek("2018-10-28");
+        DateUtil.getWeek("2018-10-29");
+        DateUtil.getWeek("2018-10-30");
+        DateUtil.getWeek("2018-10-31");
     }
 }
