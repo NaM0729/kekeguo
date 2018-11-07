@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kekeguo.admin.dao.ExamSessionPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.kekeguo.admin.model.ExamSessionPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="course_num" property="courseNum" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="class_date" property="classDate" jdbcType="VARCHAR" />
+    <result column="exam_session_num" property="examSessionNum" jdbcType="INTEGER" />
+    <result column="exam_session" property="examSession" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="exam_time" property="examTime" jdbcType="TIMESTAMP" />
+    <result column="period" property="period" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_name, area_id, course_num, course_name, class_date, exam_session_num, 
+    exam_session, education, exam_time, period, year
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from en_exam_session_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from en_exam_session_plan
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from en_exam_session_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kekeguo.admin.model.ExamSessionPlan" >
+    insert into en_exam_session_plan (id, project_name, area_id, 
+      course_num, course_name, class_date, 
+      exam_session_num, exam_session, education, 
+      exam_time, period, year
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, 
+      #{courseNum,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{classDate,jdbcType=VARCHAR}, 
+      #{examSessionNum,jdbcType=INTEGER}, #{examSession,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{examTime,jdbcType=TIMESTAMP}, #{period,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kekeguo.admin.model.ExamSessionPlan" >
+    insert into en_exam_session_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="courseNum != null" >
+        course_num,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="classDate != null" >
+        class_date,
+      </if>
+      <if test="examSessionNum != null" >
+        exam_session_num,
+      </if>
+      <if test="examSession != null" >
+        exam_session,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="examTime != null" >
+        exam_time,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="courseNum != null" >
+        #{courseNum,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="classDate != null" >
+        #{classDate,jdbcType=VARCHAR},
+      </if>
+      <if test="examSessionNum != null" >
+        #{examSessionNum,jdbcType=INTEGER},
+      </if>
+      <if test="examSession != null" >
+        #{examSession,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null" >
+        #{examTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kekeguo.admin.model.ExamSessionPlan" >
+    update en_exam_session_plan
+    <set >
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="courseNum != null" >
+        course_num = #{courseNum,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="classDate != null" >
+        class_date = #{classDate,jdbcType=VARCHAR},
+      </if>
+      <if test="examSessionNum != null" >
+        exam_session_num = #{examSessionNum,jdbcType=INTEGER},
+      </if>
+      <if test="examSession != null" >
+        exam_session = #{examSession,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null" >
+        exam_time = #{examTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kekeguo.admin.model.ExamSessionPlan" >
+    update en_exam_session_plan
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      course_num = #{courseNum,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      class_date = #{classDate,jdbcType=VARCHAR},
+      exam_session_num = #{examSessionNum,jdbcType=INTEGER},
+      exam_session = #{examSession,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      exam_time = #{examTime,jdbcType=TIMESTAMP},
+      period = #{period,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
