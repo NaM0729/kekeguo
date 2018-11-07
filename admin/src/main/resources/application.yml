@@ -11,10 +11,17 @@ spring:
   thymeleaf:
     prefix: classpath:/static/template/
   datasource:
-    url: jdbc:mysql://172.16.164.45:3369/study-plan?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    username: root
-    password: root123
-    driverClassName: com.mysql.jdbc.Driver
+      db2:
+        jdbcUrl: jdbc:mysql://172.16.164.45:3369/transfer-bank?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        username: root
+        password: root123
+        driverClassName: com.mysql.jdbc.Driver
+      db1:
+        jdbcUrl: jdbc:mysql://172.16.164.45:3369/study-plan?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+        username: root
+        password: root123
+        driverClassName: com.mysql.jdbc.Driver
+
 
 mybatis:
   mapper-locations: classpath*:com/kekeguo/admin/dao/mapper/*.xml

@@ -126,6 +126,8 @@
             <artifactId>pinyin4j</artifactId>
             <version>2.5.0</version>
         </dependency>
+
+        <!--链接数据库驱动-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>

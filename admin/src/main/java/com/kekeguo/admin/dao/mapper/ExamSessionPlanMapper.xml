@@ -26,11 +26,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="getList" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from en_exam_session_plan
-  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from en_exam_session_plan
@@ -181,4 +177,13 @@
       year = #{year,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from en_exam_session_plan
+    where exam_session="04"
+  </select>
+
+
 </mapper>
