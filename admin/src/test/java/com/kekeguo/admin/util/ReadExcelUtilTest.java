@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class ReadExcelUtilTest extends AdminApplicationTest {
 
-    String path = "/Users/admin/Documents/TestImportExcel/大批量数据.xlsx";
+    String path = "/Users/admin/Documents/TestImportExcel/空格测试.xlsx";
 
     @Test
     public void getDatas() {
