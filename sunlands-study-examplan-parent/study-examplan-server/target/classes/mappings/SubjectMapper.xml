@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.SubjectMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="SubjectEntity" id="subjectMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="property" column="property"/>
+        <result property="examMode" column="exam_mode"/>
+        <result property="isoptional" column="isOptional"/>
+        <result property="iscertificatecourse" column="isCertificateCourse"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+        <result property="hasKnowledgeTree" column="has_knowledge_tree"/>
+    </resultMap>
+
+    <sql id="SubjectColumns">
+        a.name AS name ,
+        a.property AS property ,
+        a.exam_mode AS examMode ,
+        a.isOptional AS isoptional ,
+        a.isCertificateCourse AS iscertificatecourse ,
+        a.remark AS remark ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag ,
+        a.has_knowledge_tree AS hasKnowledgeTree
+    </sql>
+
+
+    <select id="get" resultType="SubjectEntity">
+        SELECT
+        <include refid="SubjectColumns"/>
+        FROM ent_subject a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="SubjectEntity">
+        select
+        <include refid="SubjectColumns"/>
+        FROM ent_subject a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_subject 
+	</select>
+
+    <insert id="insert" parameterType="SubjectEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_subject
+		(
+        name ,
+        property ,
+        exam_mode ,
+        isOptional ,
+        isCertificateCourse ,
+        remark ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag ,
+        has_knowledge_tree
+        )
+		values
+		(
+        #{name},
+        #{property},
+        #{examMode},
+        #{isoptional},
+        #{iscertificatecourse},
+        #{remark},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag},
+        #{hasKnowledgeTree}
+        )
+	</insert>
+
+    <update id="update" parameterType="SubjectEntity">
+        update ent_subject
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="property != null">property = #{property},</if>
+            <if test="examMode != null">exam_mode = #{examMode},</if>
+            <if test="isoptional != null">isOptional = #{isoptional},</if>
+            <if test="iscertificatecourse != null">isCertificateCourse = #{iscertificatecourse},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag},</if>
+            <if test="hasKnowledgeTree != null">has_knowledge_tree = #{hasKnowledgeTree}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_subject where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_subject where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

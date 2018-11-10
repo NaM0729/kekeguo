@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="0f940548-ff95-442d-a075-a154fd2308fa" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-examplan-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/study-examplan-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/MajorApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/MajorApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study-examplan-server/study-examplan-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/study-examplan-server/study-examplan-server.iml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/study-examplan-eureka_A/target/" />
+    <ignored path="$PROJECT_DIR$/study-examplan-eureka_C/target/" />
+    <ignored path="$PROJECT_DIR$/study-examplan-eureka_B/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/study-examplan-gateway/target/" />
+    <ignored path="$PROJECT_DIR$/study-examplan-server/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SysConfigEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/config/SysConfigEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RExceptionHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/exception/RExceptionHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GateWayAuthFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/GateWayAuthFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="24" selection-start-line="24" selection-end-line="26" selection-end-column="28" />
+              <folding>
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1104#1105#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/ErrorFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="14" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZuulRateLimiterErrorHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/exception/ZuulRateLimiterErrorHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MajorApi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/MajorApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/application.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PinyinHelper.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/belerweb/pinyin4j/2.5.1/pinyin4j-2.5.1.jar!/net/sourceforge/pinyin4j/PinyinHelper.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#5869#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/study-examplan-server/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1496">
+              <caret line="88" column="19" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>EMERGENCY</find>
+      <find>peer-eureka-nodes-update-interval-ms</find>
+      <find>eureka.client.eureka-service-url-poll-interval-seconds</find>
+      <find>lease-expiration-duration-in-seconds</find>
+      <find>lease-expiration</find>
+      <find>enabled</find>
+      <find>healthcheck</find>
+      <find>actuator</find>
+      <find>replication</find>
+      <find>validation</find>
+      <find>webflux</find>
+      <find>spring-boot-starter:</find>
+      <find>reactive</find>
+      <find>gateway</find>
+      <find>ribbon.eureka.enable</find>
+      <find>Load balancer does not</find>
+      <find>loadBalancerKey</find>
+      <find>vipAddresses</find>
+      <find>getServerFromLoadBalancer</find>
+      <find>hystrix</find>
+      <find>pagehelper</find>
+      <find>ctx</find>
+      <find>SqlFilter</find>
+      <find>HTML_FILTER</find>
+      <find>xssEncode</find>
+      <find>DEFAULT_EXPIRE</find>
+      <find>``</find>
+      <find>CheckedException</find>
+      <find>DemandConstant</find>
+      <find>pingyin</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>requestContext</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/RoundRuleMapper.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/RoundRuleRelMapper.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/StuRoundMapper.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/SubjectMapper.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/CollegeProjsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/CollegeProjsService.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/CollegeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/CourseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/ExamArrangeBaseinfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/ExamCourseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/ExamPlanServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/ModuleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/OrdDetailsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/Proj1stServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/Proj2ndServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/RoundRuleRelServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/RoundRuleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/RoundServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/StuRoundServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/SubjectServiceImpl.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CollegeMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/SubjectMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/StuRoundMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundRuleRelMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundRuleMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/Proj2ndMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/Proj1stMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/OrdDetailsMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ModuleMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamPlanMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamCourseMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamArrangeBaseinfoMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CourseMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CollegeProjsMapper.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/ExamPlanServerApplication.java" />
+        <option value="$PROJECT_DIR$/study-examplan-eureka_A/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/exception/RExceptionHandler.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/TokenApi.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/GateWayUtils.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/Result.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/auth/GateWayAuthFilter.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/GateWayAuthFilter.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/ErrorFilter.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/DemandConstant.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/utils/Result.java" />
+        <option value="$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/exception/ZuulRateLimiterErrorHandler.java" />
+        <option value="$PROJECT_DIR$/study-examplan-server/pom.xml" />
+        <option value="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/MajorApi.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sunlands-study-examplan-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sunlands-study-examplan-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="821" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sunlands-study-examplan-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sunlands-study-examplan-parent" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SearchEverywhereHistoryKey" value="PinyinHelper&#9;FILE&#9;jar:///Users/admin/.m2/repository/com/belerweb/pinyin4j/2.5.1/pinyin4j-2.5.1.jar!/net/sourceforge/pinyin4j/PinyinHelper.class" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sunlands.study.examplan.gateway.filter" />
+      <recent name="com.sunlands.study.examplan.gateway.utils" />
+      <recent name="com.sunlands.examplan.utils" />
+      <recent name="com.sunlands.examplan.constant" />
+      <recent name="com.sunlands.examplan.base.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper" />
+      <recent name="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl" />
+      <recent name="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service" />
+      <recent name="$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/entity" />
+      <recent name="$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ExamPlanServerApplication">
+    <configuration name="GateWayUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sunlands.study.examplan.gateway.auth.GateWayUtils" />
+      <module name="study-examplan-gateway" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sunlands.study.examplan.gateway.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="SignUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sunlands.study.examplan.gateway.utils.SignUtils" />
+      <module name="study-examplan-gateway" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sunlands.study.examplan.gateway.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="ExamPlanEurekaA_Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="study-examplan-eureka_A" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunlands.study.examplan.eureka.ExamPlanEurekaA_Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration name="ExamPlanGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="study-examplan-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunlands.study.examplan.gateway.ExamPlanGatewayApplication" />
+      <option name="DEBUG_MODE" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    </configuration>
+    <configuration name="ExamPlanServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="study-examplan-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunlands.examplan.ExamPlanServerApplication" />
+      <option name="DEBUG_MODE" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    </configuration>
+    <configuration name="ExamplanEurekaB_Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="study-examplan-eureka_B" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunlands.study.examplan.eureka.ExamplanEurekaB_Application" />
+    </configuration>
+    <configuration name="ExamplanEurekaC_Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="study-examplan-eureka_C" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sunlands.study.examplan.eureka.ExamplanEurekaC_Application" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ExamPlanEurekaA_Application" />
+      <item itemvalue="Spring Boot.ExamplanEurekaC_Application" />
+      <item itemvalue="Spring Boot.ExamplanEurekaB_Application" />
+      <item itemvalue="Spring Boot.ExamPlanGatewayApplication" />
+      <item itemvalue="Spring Boot.ExamPlanServerApplication" />
+      <item itemvalue="Application.GateWayUtils" />
+      <item itemvalue="Application.SignUtils" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SignUtils" />
+        <item itemvalue="Application.GateWayUtils" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+    <option name="UPDATE_LOCK_ON_DEMAND" value="true" />
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="$PROJECT_DIR$" />
+          <option name="myCopyRoot" value="$PROJECT_DIR$" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f940548-ff95-442d-a075-a154fd2308fa" name="Default" comment="" />
+      <created>1541407676547</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541407676547</updated>
+      <workItem from="1541407681056" duration="24363000" />
+      <workItem from="1541493867378" duration="38633000" />
+      <workItem from="1541736042443" duration="1394000" />
+      <workItem from="1541744845446" duration="2044000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="66434000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50143063" side_tool="true" weight="0.32969698" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32925072" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4985694" weight="0.6860606" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.329602" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32969698" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.49004975" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32969698" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2240634" />
+      <window_info anchor="right" id="Bean Validation" order="8" />
+      <window_info id="Web" order="6" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="20" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/RoundRuleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/RoundRuleRelMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/StuRoundMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/mapper/SubjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/SubjectMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1545">
+          <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/StuRoundMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundRuleRelMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundRuleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/RoundMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/Proj2ndMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/Proj1stMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/OrdDetailsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2085">
+          <caret line="139" column="8" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ModuleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-62">
+          <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamPlanMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamCourseMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/ExamArrangeBaseinfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CourseMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CollegeProjsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/mappings/CollegeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-eureka-server/2.0.0.M7/spring-cloud-netflix-eureka-server-2.0.0.M7.pom" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/service/impl/CollegeProjsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/base/mapper/BaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/base/service/BaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/ExamPlanServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-eureka_A/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/common/Result.java" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/utils/Notify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/TokenApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/auth/GateWayUtils.java" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/auth/Result.java" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/auth/GateWayAuthFilter.java" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/GateWayUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/RestApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/exception/RExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/GateWayAuthFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="24" selection-start-line="24" selection-end-line="26" selection-end-column="28" />
+          <folding>
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/DemandConstant.java" />
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="40" column="44" lean-forward="true" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/config/SysConfigEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/XssSecurityFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/exception/CheckedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/utils/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/utils/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/filter/ErrorFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-gateway/src/main/java/com/sunlands/study/examplan/gateway/exception/ZuulRateLimiterErrorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="88" column="19" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/belerweb/pinyin4j/2.5.1/pinyin4j-2.5.1.jar!/net/sourceforge/pinyin4j/PinyinHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#5869#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/java/com/sunlands/examplan/api/MajorApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study-examplan-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>study-examplan-eureka_A</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$/study-examplan-gateway" />
+    <option value="dependency:tree" />
+  </component>
+</project>

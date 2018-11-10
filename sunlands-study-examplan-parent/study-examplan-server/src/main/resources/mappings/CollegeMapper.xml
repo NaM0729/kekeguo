@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.CollegeMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="CollegeEntity" id="collegeMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="collegeNo" column="college_no"/>
+        <result property="logo" column="logo"/>
+        <result property="picture" column="picture"/>
+        <result property="backPicture" column="back_picture"/>
+        <result property="districtId" column="district_id"/>
+        <result property="dsc" column="dsc"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="CollegeColumns">
+        a.name AS name ,
+        a.college_no AS collegeNo ,
+        a.logo AS logo ,
+        a.picture AS picture ,
+        a.back_picture AS backPicture ,
+        a.district_id AS districtId ,
+        a.dsc AS dsc ,
+        a.status AS status ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.operator_id AS operatorId ,
+        a.create_user_id AS createUserId ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="CollegeEntity">
+        SELECT
+        <include refid="CollegeColumns"/>
+        FROM ent_college a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="CollegeEntity">
+        select
+        <include refid="CollegeColumns"/>
+        FROM ent_college a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_college 
+	</select>
+
+    <insert id="insert" parameterType="CollegeEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_college
+		(
+        name ,
+        college_no ,
+        logo ,
+        picture ,
+        back_picture ,
+        district_id ,
+        dsc ,
+        status ,
+        create_time ,
+        update_time ,
+        operator_id ,
+        create_user_id ,
+        delete_flag
+        )
+		values
+		(
+        #{name},
+        #{collegeNo},
+        #{logo},
+        #{picture},
+        #{backPicture},
+        #{districtId},
+        #{dsc},
+        #{status},
+        #{createTime},
+        #{updateTime},
+        #{operatorId},
+        #{createUserId},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="CollegeEntity">
+        update ent_college
+        <set>
+            <if test="name != null"> name = #{name}, </if>
+            <if test="collegeNo != null"> college_no = #{collegeNo}, </if>
+            <if test="logo != null"> logo = #{logo}, </if>
+            <if test="picture != null"> picture = #{picture}, </if>
+            <if test="backPicture != null"> back_picture = #{backPicture}, </if>
+            <if test="districtId != null"> district_id = #{districtId}, </if>
+            <if test="dsc != null"> dsc = #{dsc}, </if>
+            <if test="status != null"> status = #{status}, </if>
+            <if test="createTime != null"> create_time = #{createTime}, </if>
+            <if test="updateTime != null"> update_time = #{updateTime}, </if>
+            <if test="operatorId != null"> operator_id = #{operatorId}, </if>
+            <if test="createUserId != null"> create_user_id = #{createUserId}, </if>
+            <if test="deleteFlag != null"> delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_college where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_college where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

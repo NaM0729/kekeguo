@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.ExamArrangeBaseinfoMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ExamArrangeBaseinfoEntity" id="examArrangeBaseinfoMap">
+        <result property="id" column="id"/>
+        <result property="examPlanId" column="exam_plan_id"/>
+        <result property="examCourseId" column="exam_course_id"/>
+        <result property="registerStart" column="register_start"/>
+        <result property="registerEnd" column="register_end"/>
+        <result property="hasExam" column="has_exam"/>
+        <result property="examTime" column="exam_time"/>
+        <result property="period" column="period"/>
+        <result property="limitBizDateStart" column="limit_biz_date_start"/>
+        <result property="limitBizDateEnd" column="limit_biz_date_end"/>
+        <result property="weight" column="weight"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="operator" column="operator"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="ExamArrangeBaseinfoColumns">
+        a.exam_plan_id AS examPlanId ,
+        a.exam_course_id AS examCourseId ,
+        a.register_start AS registerStart ,
+        a.register_end AS registerEnd ,
+        a.has_exam AS hasExam ,
+        a.exam_time AS examTime ,
+        a.period AS period ,
+        a.limit_biz_date_start AS limitBizDateStart ,
+        a.limit_biz_date_end AS limitBizDateEnd ,
+        a.weight AS weight ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.operator AS operator ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="ExamArrangeBaseinfoEntity">
+        SELECT
+        <include refid="ExamArrangeBaseinfoColumns"/>
+        FROM ent_exam_arrange_baseinfo a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="ExamArrangeBaseinfoEntity">
+        select
+        <include refid="ExamArrangeBaseinfoColumns"/>
+        FROM ent_exam_arrange_baseinfo a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_exam_arrange_baseinfo 
+	</select>
+
+    <insert id="insert" parameterType="ExamArrangeBaseinfoEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_exam_arrange_baseinfo
+		(
+        exam_plan_id ,
+        exam_course_id ,
+        register_start ,
+        register_end ,
+        has_exam ,
+        exam_time ,
+        period ,
+        limit_biz_date_start ,
+        limit_biz_date_end ,
+        weight ,
+        create_time ,
+        update_time ,
+        operator ,
+        delete_flag
+        )
+		values
+		(
+        #{examPlanId},
+        #{examCourseId},
+        #{registerStart},
+        #{registerEnd},
+        #{hasExam},
+        #{examTime},
+        #{period},
+        #{limitBizDateStart},
+        #{limitBizDateEnd},
+        #{weight},
+        #{createTime},
+        #{updateTime},
+        #{operator},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="ExamArrangeBaseinfoEntity">
+        update ent_exam_arrange_baseinfo
+        <set>
+            <if test="examPlanId != null">exam_plan_id = #{examPlanId},</if>
+            <if test="examCourseId != null">exam_course_id = #{examCourseId},</if>
+            <if test="registerStart != null">register_start = #{registerStart},</if>
+            <if test="registerEnd != null">register_end = #{registerEnd},</if>
+            <if test="hasExam != null">has_exam = #{hasExam},</if>
+            <if test="examTime != null">exam_time = #{examTime},</if>
+            <if test="period != null">period = #{period},</if>
+            <if test="limitBizDateStart != null">limit_biz_date_start = #{limitBizDateStart},</if>
+            <if test="limitBizDateEnd != null">limit_biz_date_end = #{limitBizDateEnd},</if>
+            <if test="weight != null">weight = #{weight},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="operator != null">operator = #{operator},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_exam_arrange_baseinfo where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_exam_arrange_baseinfo where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

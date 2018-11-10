@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.CollegeProjsMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="CollegeProjsEntity" id="collegeProjsMap">
+        <result property="id" column="id"/>
+        <result property="collegeId" column="college_id"/>
+        <result property="proj1stId" column="proj_1st_id"/>
+        <result property="proj2ndId" column="proj_2nd_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="CollegeProjsColumns">
+        a.college_id AS collegeId ,
+        a.proj_1st_id AS proj1stId ,
+        a.proj_2nd_id AS proj2ndId ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="CollegeProjsEntity">
+        SELECT
+        <include refid="CollegeProjsColumns"/>
+        FROM ent_college_projs a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="CollegeProjsEntity">
+        select
+        <include refid="CollegeProjsColumns"/>
+        FROM ent_college_projs a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_college_projs 
+	</select>
+
+    <insert id="insert" parameterType="CollegeProjsEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_college_projs
+		(
+        college_id ,
+        proj_1st_id ,
+        proj_2nd_id ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag
+        )
+		values
+		(
+        #{collegeId},
+        #{proj1stId},
+        #{proj2ndId},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="CollegeProjsEntity">
+        update ent_college_projs
+        <set>
+            <if test="collegeId != null">college_id = #{collegeId},</if>
+            <if test="proj1stId != null">proj_1st_id = #{proj1stId},</if>
+            <if test="proj2ndId != null">proj_2nd_id = #{proj2ndId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_college_projs where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_college_projs where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

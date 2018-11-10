@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.Proj2ndMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="Proj2ndEntity" id="proj2ndMap">
+        <result property="id" column="id"/>
+        <result property="proj1stId" column="proj_1st_id"/>
+        <result property="name" column="name"/>
+        <result property="remark" column="remark"/>
+        <result property="seq" column="seq"/>
+        <result property="statusCode" column="status_code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="Proj2ndColumns">
+        a.proj_1st_id AS proj1stId ,
+        a.name AS name ,
+        a.remark AS remark ,
+        a.seq AS seq ,
+        a.status_code AS statusCode ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="Proj2ndEntity">
+        SELECT
+        <include refid="Proj2ndColumns"/>
+        FROM ent_proj_2nd a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="Proj2ndEntity">
+        select
+        <include refid="Proj2ndColumns"/>
+        FROM ent_proj_2nd a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_proj_2nd 
+	</select>
+
+    <insert id="insert" parameterType="Proj2ndEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_proj_2nd
+		(
+        proj_1st_id ,
+        name ,
+        remark ,
+        seq ,
+        status_code ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag
+        )
+		values
+		(
+        #{proj1stId},
+        #{name},
+        #{remark},
+        #{seq},
+        #{statusCode},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="Proj2ndEntity">
+        update ent_proj_2nd
+        <set>
+            <if test="proj1stId != null">proj_1st_id = #{proj1stId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="seq != null">seq = #{seq},</if>
+            <if test="statusCode != null">status_code = #{statusCode},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_proj_2nd where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_proj_2nd where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+	<select id="getMajorList" resultType="Proj2ndEntity" parameterType="Proj2ndEntity">
+		SELECT
+			<include refid="Proj2ndColumns"/>
+		FROM
+			ent_proj_2nd a,
+			ent_exam_plan en,
+			ent_proj_1st st
+		WHERE
+			en.project2_id = a.id
+		AND en.exam_session IN ('1904')
+		AND en.delete_flag = 0
+		AND en.`status` = 1
+		AND a.name NOT LIKE '%测试%'
+		AND a.proj_1st_id = st.id
+		AND st.name = '自考'
+		<if test="name != null">AND a.name = #{name}</if>
+		order by a.name
+    </select>
+</mapper>

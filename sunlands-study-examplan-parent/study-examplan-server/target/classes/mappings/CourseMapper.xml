@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.CourseMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="CourseEntity" id="courseMap">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="typeId" column="type_id"/>
+        <result property="credit" column="credit"/>
+        <result property="project2Id" column="project2_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="operator" column="operator"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="CourseColumns">
+        a.code AS code ,
+        a.name AS name ,
+        a.type_id AS typeId ,
+        a.credit AS credit ,
+        a.project2_id AS project2Id ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.operator AS operator ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="CourseEntity">
+        SELECT
+        <include refid="CourseColumns"/>
+        FROM ent_course a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="CourseEntity">
+        select
+        <include refid="CourseColumns"/>
+        FROM ent_course a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_course 
+	</select>
+
+    <insert id="insert" parameterType="CourseEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_course
+		(
+        code ,
+        name ,
+        type_id ,
+        credit ,
+        project2_id ,
+        create_time ,
+        update_time ,
+        operator ,
+        delete_flag
+        )
+		values
+		(
+        #{code},
+        #{name},
+        #{typeId},
+        #{credit},
+        #{project2Id},
+        #{createTime},
+        #{updateTime},
+        #{operator},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="CourseEntity">
+        update ent_course
+        <set>
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="credit != null">credit = #{credit},</if>
+            <if test="project2Id != null">project2_id = #{project2Id},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="operator != null">operator = #{operator},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_course where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_course where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.ModuleMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ModuleEntity" id="moduleMap">
+        <result property="id" column="id"/>
+        <result property="collegeProjId" column="college_proj_id"/>
+        <result property="name" column="name"/>
+        <result property="dsc" column="dsc"/>
+        <result property="price" column="price"/>
+        <result property="typeCode" column="type_code"/>
+        <result property="statusCode" column="status_code"/>
+        <result property="subjectId" column="subject_id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="ModuleColumns">
+        a.college_proj_id AS collegeProjId ,
+        a.name AS name ,
+        a.dsc AS dsc ,
+        a.price AS price ,
+        a.type_code AS typeCode ,
+        a.status_code AS statusCode ,
+        a.subject_id AS subjectId ,
+        a.course_id AS courseId ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="ModuleEntity">
+        SELECT
+        <include refid="ModuleColumns"/>
+        FROM ent_module a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="ModuleEntity">
+        select
+        <include refid="ModuleColumns"/>
+        FROM ent_module a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_module 
+	</select>
+
+    <insert id="insert" parameterType="ModuleEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_module
+		(
+        college_proj_id ,
+        name ,
+        dsc ,
+        price ,
+        type_code ,
+        status_code ,
+        subject_id ,
+        course_id ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag
+        )
+		values
+		(
+        #{collegeProjId},
+        #{name},
+        #{dsc},
+        #{price},
+        #{typeCode},
+        #{statusCode},
+        #{subjectId},
+        #{courseId},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="ModuleEntity">
+        update ent_module
+        <set>
+            <if test="collegeProjId != null">college_proj_id = #{collegeProjId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="dsc != null">dsc = #{dsc},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="typeCode != null">type_code = #{typeCode},</if>
+            <if test="statusCode != null">status_code = #{statusCode},</if>
+            <if test="subjectId != null">subject_id = #{subjectId},</if>
+            <if test="courseId != null">course_id = #{courseId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_module where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_module where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

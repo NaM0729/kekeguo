@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.SchLocalProvinceMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="SchLocalProvinceEntity" id="schLocalProvinceMap">
+        <result property="id" column="id"/>
+        <result property="provinceName" column="province_name"/>
+        <result property="provinceCode" column="province_code"/>
+        <result property="operator" column="operator"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="SchLocalProvinceColumns">
+        a.id AS id ,
+        a.province_name AS provinceName ,
+        a.province_code AS provinceCode ,
+        a.operator AS operator ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.delete_flag AS deleteFlag
+    </sql>
+
+
+    <select id="get" resultType="SchLocalProvinceEntity">
+        SELECT
+        <include refid="SchLocalProvinceColumns"/>
+        FROM sch_local_province a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="SchLocalProvinceEntity">
+        SELECT
+        a.id as id,a.province_name as provinceName
+        FROM sch_local_province a
+        WHERE a.delete_flag = 0
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from sch_local_province 
+	</select>
+
+    <insert id="insert" parameterType="SchLocalProvinceEntity">
+		insert into sch_local_province
+		(
+        id ,
+        province_name ,
+        province_code ,
+        operator ,
+        create_time ,
+        update_time ,
+        delete_flag
+        )
+		values
+		(
+        #{id},
+        #{provinceName},
+        #{provinceCode},
+        #{operator},
+        #{createTime},
+        #{updateTime},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="SchLocalProvinceEntity">
+        update sch_local_province
+        <set>
+            <if test="provinceName != null">province_name = #{provinceName},</if>
+            <if test="provinceCode != null">province_code = #{provinceCode},</if>
+            <if test="operator != null">operator = #{operator},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from sch_local_province where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from sch_local_province where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

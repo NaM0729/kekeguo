@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.ExamSessionPlanMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ExamSessionPlanEntity" id="examSessionPlanMap">
+        <result property="id" column="id"/>
+        <result property="projectName" column="project_name"/>
+        <result property="areaId" column="area_id"/>
+        <result property="courseNum" column="course_num"/>
+        <result property="courseName" column="course_name"/>
+        <result property="classDate" column="class_date"/>
+        <result property="examSessionNum" column="exam_session_num"/>
+        <result property="examSession" column="exam_session"/>
+        <result property="education" column="education"/>
+        <result property="examTime" column="exam_time"/>
+        <result property="period" column="period"/>
+        <result property="year" column="year"/>
+    </resultMap>
+
+    <sql id="ExamSessionPlanColumns">
+        a.project_name AS projectName ,
+        a.area_id AS areaId ,
+        a.course_num AS courseNum ,
+        a.course_name AS courseName ,
+        a.class_date AS classDate ,
+        a.exam_session_num AS examSessionNum ,
+        a.exam_session AS examSession ,
+        a.education AS education ,
+        a.exam_time AS examTime ,
+        a.period AS period ,
+        a.year AS year
+    </sql>
+
+
+    <select id="get" resultType="ExamSessionPlanEntity">
+        SELECT
+        <include refid="ExamSessionPlanColumns"/>
+        FROM ent_exam_session_plan a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="ExamSessionPlanEntity">
+        select
+        <include refid="ExamSessionPlanColumns"/>
+        FROM ent_exam_session_plan a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_exam_session_plan 
+	</select>
+
+    <insert id="insert" parameterType="ExamSessionPlanEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_exam_session_plan
+		(
+        project_name ,
+        area_id ,
+        course_num ,
+        course_name ,
+        class_date ,
+        exam_session_num ,
+        exam_session ,
+        education ,
+        exam_time ,
+        period ,
+        year
+        )
+		values
+		(
+        #{projectName},
+        #{areaId},
+        #{courseNum},
+        #{courseName},
+        #{classDate},
+        #{examSessionNum},
+        #{examSession},
+        #{education},
+        #{examTime},
+        #{period},
+        #{year}
+        )
+	</insert>
+
+    <update id="update" parameterType="ExamSessionPlanEntity">
+        update ent_exam_session_plan
+        <set>
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="areaId != null">area_id = #{areaId},</if>
+            <if test="courseNum != null">course_num = #{courseNum},</if>
+            <if test="courseName != null">course_name = #{courseName},</if>
+            <if test="classDate != null">class_date = #{classDate},</if>
+            <if test="examSessionNum != null">exam_session_num = #{examSessionNum},</if>
+            <if test="examSession != null">exam_session = #{examSession},</if>
+            <if test="education != null">education = #{education},</if>
+            <if test="examTime != null">exam_time = #{examTime},</if>
+            <if test="period != null">period = #{period},</if>
+            <if test="year != null">year = #{year}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_exam_session_plan where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_exam_session_plan where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

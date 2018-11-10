@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.ExamProcessMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="ExamProcessEntity" id="examProcessMap">
+        <result property="id" column="id"/>
+        <result property="examArea" column="exam_area"/>
+        <result property="examPeriod" column="exam_period"/>
+        <result property="examStart" column="exam_start"/>
+        <result property="examineeFlag" column="examinee_flag"/>
+        <result property="examLevel" column="exam_level"/>
+        <result property="dateType" column="date_type"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="eventName" column="event_name"/>
+        <result property="eventDesc" column="event_desc"/>
+        <result property="eventLink" column="event_link"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <sql id="ExamProcessColumns">
+        a.exam_area AS examArea ,
+        a.exam_period AS examPeriod ,
+        a.exam_start AS examStart ,
+        a.examinee_flag AS examineeFlag ,
+        a.exam_level AS examLevel ,
+        a.date_type AS dateType ,
+        a.start_date AS startDate ,
+        a.end_date AS endDate ,
+        a.start_time AS startTime ,
+        a.end_time AS endTime ,
+        a.event_name AS eventName ,
+        a.event_desc AS eventDesc ,
+        a.event_link AS eventLink ,
+        a.update_date AS updateDate
+    </sql>
+
+
+    <select id="get" resultType="ExamProcessEntity">
+        SELECT
+        <include refid="ExamProcessColumns"/>
+        FROM ent_exam_process a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="ExamProcessEntity">
+        select
+        <include refid="ExamProcessColumns"/>
+        FROM ent_exam_process a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_exam_process 
+	</select>
+
+    <insert id="insert" parameterType="ExamProcessEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_exam_process
+		(
+        exam_area ,
+        exam_period ,
+        exam_start ,
+        examinee_flag ,
+        exam_level ,
+        date_type ,
+        start_date ,
+        end_date ,
+        start_time ,
+        end_time ,
+        event_name ,
+        event_desc ,
+        event_link ,
+        update_date
+        )
+		values
+		(
+        #{examArea},
+        #{examPeriod},
+        #{examStart},
+        #{examineeFlag},
+        #{examLevel},
+        #{dateType},
+        #{startDate},
+        #{endDate},
+        #{startTime},
+        #{endTime},
+        #{eventName},
+        #{eventDesc},
+        #{eventLink},
+        #{updateDate}
+        )
+	</insert>
+
+    <update id="update" parameterType="ExamProcessEntity">
+        update ent_exam_process
+        <set>
+            <if test="examArea != null">exam_area = #{examArea},</if>
+            <if test="examPeriod != null">exam_period = #{examPeriod},</if>
+            <if test="examStart != null">exam_start = #{examStart},</if>
+            <if test="examineeFlag != null">examinee_flag = #{examineeFlag},</if>
+            <if test="examLevel != null">exam_level = #{examLevel},</if>
+            <if test="dateType != null">date_type = #{dateType},</if>
+            <if test="startDate != null">start_date = #{startDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="eventName != null">event_name = #{eventName},</if>
+            <if test="eventDesc != null">event_desc = #{eventDesc},</if>
+            <if test="eventLink != null">event_link = #{eventLink},</if>
+            <if test="updateDate != null">update_date = #{updateDate}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_exam_process where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_exam_process where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

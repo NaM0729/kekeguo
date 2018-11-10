@@ -27,6 +27,15 @@ public class DateUtil {
         return week[calendar.get(Calendar.DAY_OF_WEEK) - 1];
     }
 
+    public static String getYearAndNum(String date,int num) throws ParseException {
+
+        while(num>0){
+            date = getDateNextYear(date);
+            num--;
+        }
+        return date;
+    }
+
     public static String getDateNextYear(String date) throws ParseException {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(simpleDateFormat.parse(date));
@@ -70,14 +79,15 @@ public class DateUtil {
 
 
     public static void main(String[] args) throws ParseException {
-        DateUtil.getWeek("2018-10-27");
-        DateUtil.getWeek("2018-10-28");
-        DateUtil.getWeek("2018-10-29");
-        DateUtil.getWeek("2018-10-30");
-        DateUtil.getWeek("2018-10-31");
+//        DateUtil.getWeek("2018-10-27");
+//        DateUtil.getWeek("2018-10-28");
+//        DateUtil.getWeek("2018-10-29");
+//        DateUtil.getWeek("2018-10-30");
+//        DateUtil.getWeek("2018-10-31");
 
-        String date = "2017-10-14";
-        String dateNextYear = DateUtil.getDateNextYear(date);
+
+        String date = "2018-04-21";
+        String dateNextYear = DateUtil.getYearAndNum(date,2);
         System.out.println(dateNextYear);
     }
 }

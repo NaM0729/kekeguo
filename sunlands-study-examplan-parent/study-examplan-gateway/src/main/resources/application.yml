@@ -1,0 +1,70 @@
+spring:
+    application:
+      name: examplan-gateway
+########################################################################################################################################################
+server:
+    port: 8764
+########################################################################################################################################################
+zuul:
+  routes:
+    api-a:
+      path: /api/examplan-api/**
+      serviceId: examplan-service
+
+examplan-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: 127.0.0.1:7000/
+    ConnectTimeout: 10000
+    ReadTimeout: 5000
+    MaxTotalHttpConnections: 1000
+    MaxConnectionsPerHost: 500
+########################################################################################################################################################
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+########################################################################################################################################################
+eureka:
+    instance:
+      instance-id: ${spring.application.name}:${server.port}
+      lease-renewal-interval-in-seconds: 3
+      lease-expiration-duration-in-seconds: 15
+      prefer-ip-address: true
+      ip-address: 127.0.0.1
+    client:
+        fetch-registry: true
+        register-with-eureka: true
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+            defaultZone: http://127.0.0.1:8761/eureka/
+########################################################################################################################################################
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+########################################################################################################################################################
+gate:
+  ignore:
+    startWith: /auth/token
+########################################################################################################################################################
+appId: wryqwrxx1wet123we45
+########################################################################################################################################################
+logging:
+  level: error
+  level.com.sunlands.study: error
+  path: logs/
+  file: study-examplan-gateway-dev.log
+

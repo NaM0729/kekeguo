@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/study-examplan-eureka_A/study-examplan-eureka_A.iml" filepath="$PROJECT_DIR$/study-examplan-eureka_A/study-examplan-eureka_A.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-examplan-eureka_B/study-examplan-eureka_B.iml" filepath="$PROJECT_DIR$/study-examplan-eureka_B/study-examplan-eureka_B.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-examplan-eureka_C/study-examplan-eureka_C.iml" filepath="$PROJECT_DIR$/study-examplan-eureka_C/study-examplan-eureka_C.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-examplan-gateway/study-examplan-gateway.iml" filepath="$PROJECT_DIR$/study-examplan-gateway/study-examplan-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-examplan-server/study-examplan-server.iml" filepath="$PROJECT_DIR$/study-examplan-server/study-examplan-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sunlands-study-examplan-parent.iml" filepath="$PROJECT_DIR$/sunlands-study-examplan-parent.iml" />
+    </modules>
+  </component>
+</project>

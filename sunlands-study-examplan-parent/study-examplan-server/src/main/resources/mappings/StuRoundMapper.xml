@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.StuRoundMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="StuRoundEntity" id="stuRoundMap">
+        <result property="id" column="id"/>
+        <result property="ordId" column="ord_id"/>
+        <result property="ordDetailId" column="ord_detail_id"/>
+        <result property="roundId" column="round_id"/>
+        <result property="familyId" column="family_id"/>
+        <result property="productLineId" column="product_line_id"/>
+        <result property="productLineSubId" column="product_line_sub_id"/>
+        <result property="status" column="status"/>
+        <result property="property" column="property"/>
+        <result property="ishistory" column="isHistory"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+    </resultMap>
+
+    <sql id="StuRoundColumns">
+        a.ord_id AS ordId ,
+        a.ord_detail_id AS ordDetailId ,
+        a.round_id AS roundId ,
+        a.family_id AS familyId ,
+        a.product_line_id AS productLineId ,
+        a.product_line_sub_id AS productLineSubId ,
+        a.status AS status ,
+        a.property AS property ,
+        a.isHistory AS ishistory ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag
+     </sql>
+
+
+    <select id="get" resultType="StuRoundEntity">
+        SELECT
+        <include refid="StuRoundColumns"/>
+        FROM ent_stu_round a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="StuRoundEntity">
+        select
+        <include refid="StuRoundColumns"/>
+        FROM ent_stu_round a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_stu_round 
+	</select>
+
+    <insert id="insert" parameterType="StuRoundEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_stu_round
+		(
+        ord_id ,
+        ord_detail_id ,
+        round_id ,
+        family_id ,
+        product_line_id ,
+        product_line_sub_id ,
+        status ,
+        property ,
+        isHistory ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag
+        )
+		values
+		(
+        #{ordId},
+        #{ordDetailId},
+        #{roundId},
+        #{familyId},
+        #{productLineId},
+        #{productLineSubId},
+        #{status},
+        #{property},
+        #{ishistory},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag}
+        )
+	</insert>
+
+    <update id="update" parameterType="StuRoundEntity">
+        update ent_stu_round
+        <set>
+            <if test="ordId != null">ord_id = #{ordId},</if>
+            <if test="ordDetailId != null">ord_detail_id = #{ordDetailId},</if>
+            <if test="roundId != null">round_id = #{roundId},</if>
+            <if test="familyId != null">family_id = #{familyId},</if>
+            <if test="productLineId != null">product_line_id = #{productLineId},</if>
+            <if test="productLineSubId != null">product_line_sub_id = #{productLineSubId},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="property != null">property = #{property},</if>
+            <if test="ishistory != null">isHistory = #{ishistory},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_stu_round where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_stu_round where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

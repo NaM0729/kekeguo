@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.TeachUnitMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="TeachUnitEntity" id="teachUnitMap">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="teachTypeCode" column="teach_type_code"/>
+        <result property="teachUnitName" column="teach_unit_name"/>
+        <result property="className" column="class_name"/>
+        <result property="attendClassDate" column="attend_class_date"/>
+        <result property="attendClassTime" column="attend_class_time"/>
+        <result property="attendClassAddress" column="attend_class_address"/>
+        <result property="attendClassTeacher" column="attend_class_teacher"/>
+        <result property="teacherEmail" column="teacher_email"/>
+        <result property="classManager" column="class_manager"/>
+        <result property="mapName" column="map_name"/>
+        <result property="remark" column="remark"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="schoolName" column="school_name"/>
+        <result property="downloadUrl" column="download_url"/>
+        <result property="password" column="password"/>
+        <result property="creator" column="creator"/>
+        <result property="isOpenQuestion" column="is_open_question"/>
+        <result property="status" column="status"/>
+        <result property="courseNumber" column="course_number"/>
+        <result property="qqCode" column="qq_code"/>
+        <result property="surveyAddress" column="survey_address"/>
+        <result property="isTeachChange" column="is_teach_change"/>
+        <result property="isFromHaixue" column="is_from_haixue"/>
+        <result property="haixueUrl" column="haixue_url"/>
+        <result property="playWebcastid" column="play_webcastid"/>
+        <result property="quizzesGroupId" column="quizzes_group_id"/>
+        <result property="looyuId" column="looyu_id"/>
+        <result property="xiaonengId" column="xiaoneng_id"/>
+        <result property="homeworkId" column="homework_id"/>
+        <result property="hadithsId" column="hadiths_id"/>
+        <result property="moduleName" column="module_name"/>
+        <result property="reserveLiveWebcastid" column="reserve_live_webcastid"/>
+        <result property="isEnableReserveLive" column="is_enable_reserve_live"/>
+        <result property="recordStartTime" column="record_start_time"/>
+        <result property="isFree" column="is_free"/>
+        <result property="liveProvider" column="live_provider"/>
+        <result property="ryeLiveRoomId" column="rye_live_room_id"/>
+        <result property="upudayLiveRoomId" column="upuday_live_room_id"/>
+        <result property="bokeccLiveRoomId" column="bokecc_live_room_id"/>
+        <result property="couponId" column="coupon_id"/>
+        <result property="subTitle" column="sub_title"/>
+        <result property="hour" column="hour"/>
+        <result property="lessonSeq" column="lesson_seq"/>
+        <result property="moduleId" column="module_id"/>
+        <result property="roundId" column="round_id"/>
+        <result property="unitId" column="unit_id"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="weekCode" column="week_code"/>
+        <result property="teacherId" column="teacher_id"/>
+        <result property="assistantId" column="assistant_id"/>
+        <result property="ishistory" column="isHistory"/>
+        <result property="istraining" column="isTraining"/>
+        <result property="baijiaRoomId" column="baijia_room_id"/>
+        <result property="isGiftFunction" column="is_gift_function"/>
+        <result property="preparePostUrl" column="prepare_post_url"/>
+        <result property="playWebcastidReserve" column="play_webcastid_reserve"/>
+        <result property="liveProviderReplayReserve" column="live_provider_replay_reserve"/>
+        <result property="replayState" column="replay_state"/>
+    </resultMap>
+
+    <sql id="TeachUnitColumns">
+		a.create_time AS createTime ,
+		a.teach_type_code AS teachTypeCode ,
+		a.teach_unit_name AS teachUnitName ,
+		a.class_name AS className ,
+		a.attend_class_date AS attendClassDate ,
+		a.attend_class_time AS attendClassTime ,
+		a.attend_class_address AS attendClassAddress ,
+		a.attend_class_teacher AS attendClassTeacher ,
+		a.teacher_email AS teacherEmail ,
+		a.class_manager AS classManager ,
+		a.map_name AS mapName ,
+		a.remark AS remark ,
+		a.update_time AS updateTime ,
+		a.school_name AS schoolName ,
+		a.download_url AS downloadUrl ,
+		a.password AS password ,
+		a.creator AS creator ,
+		a.is_open_question AS isOpenQuestion ,
+		a.status AS status ,
+		a.course_number AS courseNumber ,
+		a.qq_code AS qqCode ,
+		a.survey_address AS surveyAddress ,
+		a.is_teach_change AS isTeachChange ,
+		a.is_from_haixue AS isFromHaixue ,
+		a.haixue_url AS haixueUrl ,
+		a.play_webcastid AS playWebcastid ,
+		a.quizzes_group_id AS quizzesGroupId ,
+		a.looyu_id AS looyuId ,
+		a.xiaoneng_id AS xiaonengId ,
+		a.homework_id AS homeworkId ,
+		a.hadiths_id AS hadithsId ,
+		a.module_name AS moduleName ,
+		a.reserve_live_webcastid AS reserveLiveWebcastid ,
+		a.is_enable_reserve_live AS isEnableReserveLive ,
+		a.record_start_time AS recordStartTime ,
+		a.is_free AS isFree ,
+		a.live_provider AS liveProvider ,
+		a.rye_live_room_id AS ryeLiveRoomId ,
+		a.upuday_live_room_id AS upudayLiveRoomId ,
+		a.bokecc_live_room_id AS bokeccLiveRoomId ,
+		a.coupon_id AS couponId ,
+		a.sub_title AS subTitle ,
+		a.hour AS hour ,
+		a.lesson_seq AS lessonSeq ,
+		a.module_id AS moduleId ,
+		a.round_id AS roundId ,
+		a.unit_id AS unitId ,
+		a.begin_time AS beginTime ,
+		a.end_time AS endTime ,
+		a.week_code AS weekCode ,
+		a.teacher_id AS teacherId ,
+		a.assistant_id AS assistantId ,
+		a.isHistory AS ishistory ,
+		a.isTraining AS istraining ,
+		a.baijia_room_id AS baijiaRoomId ,
+		a.is_gift_function AS isGiftFunction ,
+		a.prepare_post_url AS preparePostUrl ,
+		a.play_webcastid_reserve AS playWebcastidReserve ,
+		a.live_provider_replay_reserve AS liveProviderReplayReserve ,
+		a.replay_state AS replayState
+	</sql>
+
+
+    <select id="get" resultType="TeachUnitEntity">
+        SELECT
+        <include refid="TeachUnitColumns"/>
+        FROM t_teach_unit a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="TeachUnitEntity">
+        select
+        <include refid="TeachUnitColumns"/>
+        FROM t_teach_unit a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from t_teach_unit 
+	</select>
+
+    <insert id="insert" parameterType="TeachUnitEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into t_teach_unit
+		(
+		create_time ,
+		teach_type_code ,
+		teach_unit_name ,
+		class_name ,
+		attend_class_date ,
+		attend_class_time ,
+		attend_class_address ,
+		attend_class_teacher ,
+		teacher_email ,
+		class_manager ,
+		map_name ,
+		remark ,
+		update_time ,
+		school_name ,
+		download_url ,
+		password ,
+		creator ,
+		is_open_question ,
+		status ,
+		course_number ,
+		qq_code ,
+		survey_address ,
+		is_teach_change ,
+		is_from_haixue ,
+		haixue_url ,
+		play_webcastid ,
+		quizzes_group_id ,
+		looyu_id ,
+		xiaoneng_id ,
+		homework_id ,
+		hadiths_id ,
+		module_name ,
+		reserve_live_webcastid ,
+		is_enable_reserve_live ,
+		record_start_time ,
+		is_free ,
+		live_provider ,
+		rye_live_room_id ,
+		upuday_live_room_id ,
+		bokecc_live_room_id ,
+		coupon_id ,
+		sub_title ,
+		hour ,
+		lesson_seq ,
+		module_id ,
+		round_id ,
+		unit_id ,
+		begin_time ,
+		end_time ,
+		week_code ,
+		teacher_id ,
+		assistant_id ,
+		isHistory ,
+		isTraining ,
+		baijia_room_id ,
+		is_gift_function ,
+		prepare_post_url ,
+		play_webcastid_reserve ,
+		live_provider_replay_reserve ,
+		replay_state
+		)
+		values
+		(
+		#{createTime},
+		#{teachTypeCode},
+		#{teachUnitName},
+		#{className},
+		#{attendClassDate},
+		#{attendClassTime},
+		#{attendClassAddress},
+		#{attendClassTeacher},
+		#{teacherEmail},
+		#{classManager},
+		#{mapName},
+		#{remark},
+		#{updateTime},
+		#{schoolName},
+		#{downloadUrl},
+		#{password},
+		#{creator},
+		#{isOpenQuestion},
+		#{status},
+		#{courseNumber},
+		#{qqCode},
+		#{surveyAddress},
+		#{isTeachChange},
+		#{isFromHaixue},
+		#{haixueUrl},
+		#{playWebcastid},
+		#{quizzesGroupId},
+		#{looyuId},
+		#{xiaonengId},
+		#{homeworkId},
+		#{hadithsId},
+		#{moduleName},
+		#{reserveLiveWebcastid},
+		#{isEnableReserveLive},
+		#{recordStartTime},
+		#{isFree},
+		#{liveProvider},
+		#{ryeLiveRoomId},
+		#{upudayLiveRoomId},
+		#{bokeccLiveRoomId},
+		#{couponId},
+		#{subTitle},
+		#{hour},
+		#{lessonSeq},
+		#{moduleId},
+		#{roundId},
+		#{unitId},
+		#{beginTime},
+		#{endTime},
+		#{weekCode},
+		#{teacherId},
+		#{assistantId},
+		#{ishistory},
+		#{istraining},
+		#{baijiaRoomId},
+		#{isGiftFunction},
+		#{preparePostUrl},
+		#{playWebcastidReserve},
+		#{liveProviderReplayReserve},
+		#{replayState}
+		)
+	</insert>
+
+    <update id="update" parameterType="TeachUnitEntity">
+        update t_teach_unit
+        <set>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="teachTypeCode != null">teach_type_code = #{teachTypeCode},</if>
+            <if test="teachUnitName != null">teach_unit_name = #{teachUnitName},</if>
+            <if test="className != null">class_name = #{className},</if>
+            <if test="attendClassDate != null">attend_class_date = #{attendClassDate},</if>
+            <if test="attendClassTime != null">attend_class_time = #{attendClassTime},</if>
+            <if test="attendClassAddress != null">attend_class_address = #{attendClassAddress},</if>
+            <if test="attendClassTeacher != null">attend_class_teacher = #{attendClassTeacher},</if>
+            <if test="teacherEmail != null">teacher_email = #{teacherEmail},</if>
+            <if test="classManager != null">class_manager = #{classManager},</if>
+            <if test="mapName != null">map_name = #{mapName},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="schoolName != null">school_name = #{schoolName},</if>
+            <if test="downloadUrl != null">download_url = #{downloadUrl},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="isOpenQuestion != null">is_open_question = #{isOpenQuestion},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="courseNumber != null">course_number = #{courseNumber},</if>
+            <if test="qqCode != null">qq_code = #{qqCode},</if>
+            <if test="surveyAddress != null">survey_address = #{surveyAddress},</if>
+            <if test="isTeachChange != null">is_teach_change = #{isTeachChange},</if>
+            <if test="isFromHaixue != null">is_from_haixue = #{isFromHaixue},</if>
+            <if test="haixueUrl != null">haixue_url = #{haixueUrl},</if>
+            <if test="playWebcastid != null">play_webcastid = #{playWebcastid},</if>
+            <if test="quizzesGroupId != null">quizzes_group_id = #{quizzesGroupId},</if>
+            <if test="looyuId != null">looyu_id = #{looyuId},</if>
+            <if test="xiaonengId != null">xiaoneng_id = #{xiaonengId},</if>
+            <if test="homeworkId != null">homework_id = #{homeworkId},</if>
+            <if test="hadithsId != null">hadiths_id = #{hadithsId},</if>
+            <if test="moduleName != null">module_name = #{moduleName},</if>
+            <if test="reserveLiveWebcastid != null">reserve_live_webcastid = #{reserveLiveWebcastid},</if>
+            <if test="isEnableReserveLive != null">is_enable_reserve_live = #{isEnableReserveLive},</if>
+            <if test="recordStartTime != null">record_start_time = #{recordStartTime},</if>
+            <if test="isFree != null">is_free = #{isFree},</if>
+            <if test="liveProvider != null">live_provider = #{liveProvider},</if>
+            <if test="ryeLiveRoomId != null">rye_live_room_id = #{ryeLiveRoomId},</if>
+            <if test="upudayLiveRoomId != null">upuday_live_room_id = #{upudayLiveRoomId},</if>
+            <if test="bokeccLiveRoomId != null">bokecc_live_room_id = #{bokeccLiveRoomId},</if>
+            <if test="couponId != null">coupon_id = #{couponId},</if>
+            <if test="subTitle != null">sub_title = #{subTitle},</if>
+            <if test="hour != null">hour = #{hour},</if>
+            <if test="lessonSeq != null">lesson_seq = #{lessonSeq},</if>
+            <if test="moduleId != null">module_id = #{moduleId},</if>
+            <if test="roundId != null">round_id = #{roundId},</if>
+            <if test="unitId != null">unit_id = #{unitId},</if>
+            <if test="beginTime != null">begin_time = #{beginTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="weekCode != null">week_code = #{weekCode},</if>
+            <if test="teacherId != null">teacher_id = #{teacherId},</if>
+            <if test="assistantId != null">assistant_id = #{assistantId},</if>
+            <if test="ishistory != null">isHistory = #{ishistory},</if>
+            <if test="istraining != null">isTraining = #{istraining},</if>
+            <if test="baijiaRoomId != null">baijia_room_id = #{baijiaRoomId},</if>
+            <if test="isGiftFunction != null">is_gift_function = #{isGiftFunction},</if>
+            <if test="preparePostUrl != null">prepare_post_url = #{preparePostUrl},</if>
+            <if test="playWebcastidReserve != null">play_webcastid_reserve = #{playWebcastidReserve},</if>
+            <if test="liveProviderReplayReserve != null">live_provider_replay_reserve = #{liveProviderReplayReserve},
+            </if>
+            <if test="replayState != null">replay_state = #{replayState}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from t_teach_unit where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from t_teach_unit where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

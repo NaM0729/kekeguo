@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunlands.examplan.mapper.OrdDetailsMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="OrdDetailsEntity" id="ordDetailsMap">
+        <result property="id" column="id"/>
+        <result property="serialNo" column="serial_no"/>
+        <result property="ordId" column="ord_id"/>
+        <result property="packageTypeCode" column="package_type_code"/>
+        <result property="packageId" column="package_id"/>
+        <result property="packageName" column="package_name"/>
+        <result property="outItemId" column="out_item_id"/>
+        <result property="bizDate" column="biz_date"/>
+        <result property="refundedAmount" column="refunded_amount"/>
+        <result property="price" column="price"/>
+        <result property="floorPrice" column="floor_price"/>
+        <result property="insuranceAmount" column="insurance_amount"/>
+        <result property="trainingAmount" column="training_amount"/>
+        <result property="amount" column="amount"/>
+        <result property="statusCode" column="status_code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createUserId" column="create_user_id"/>
+        <result property="operatorId" column="operator_id"/>
+        <result property="deleteFlag" column="delete_flag"/>
+        <result property="itemNo" column="item_no"/>
+        <result property="companyCode" column="company_code"/>
+    </resultMap>
+
+    <sql id="OrdDetailsColumns">
+        a.serial_no AS serialNo ,
+        a.ord_id AS ordId ,
+        a.package_type_code AS packageTypeCode ,
+        a.package_id AS packageId ,
+        a.package_name AS packageName ,
+        a.out_item_id AS outItemId ,
+        a.biz_date AS bizDate ,
+        a.refunded_amount AS refundedAmount ,
+        a.price AS price ,
+        a.floor_price AS floorPrice ,
+        a.insurance_amount AS insuranceAmount ,
+        a.training_amount AS trainingAmount ,
+        a.amount AS amount ,
+        a.status_code AS statusCode ,
+        a.create_time AS createTime ,
+        a.update_time AS updateTime ,
+        a.create_user_id AS createUserId ,
+        a.operator_id AS operatorId ,
+        a.delete_flag AS deleteFlag ,
+        a.item_no AS itemNo ,
+        a.company_code AS companyCode
+    </sql>
+
+
+    <select id="get" resultType="OrdDetailsEntity">
+        SELECT
+        <include refid="OrdDetailsColumns"/>
+        FROM ent_ord_details a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="OrdDetailsEntity">
+        select
+        <include refid="OrdDetailsColumns"/>
+        FROM ent_ord_details a
+        <where>
+            a.delete_flag = 0
+            <if test=" != null and  != '' ">
+                AND a. = #{}
+            </if>
+            <if test=" != null and  != '' ">
+                AND a. LIKE concat('%',#{},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="order != null and order != ''">
+                ORDER BY a.update_date ${order}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from ent_ord_details 
+	</select>
+
+    <insert id="insert" parameterType="OrdDetailsEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into ent_ord_details
+		(
+        serial_no ,
+        ord_id ,
+        package_type_code ,
+        package_id ,
+        package_name ,
+        out_item_id ,
+        biz_date ,
+        refunded_amount ,
+        price ,
+        floor_price ,
+        insurance_amount ,
+        training_amount ,
+        amount ,
+        status_code ,
+        create_time ,
+        update_time ,
+        create_user_id ,
+        operator_id ,
+        delete_flag ,
+        item_no ,
+        company_code
+        )
+		values
+		(
+        #{serialNo},
+        #{ordId},
+        #{packageTypeCode},
+        #{packageId},
+        #{packageName},
+        #{outItemId},
+        #{bizDate},
+        #{refundedAmount},
+        #{price},
+        #{floorPrice},
+        #{insuranceAmount},
+        #{trainingAmount},
+        #{amount},
+        #{statusCode},
+        #{createTime},
+        #{updateTime},
+        #{createUserId},
+        #{operatorId},
+        #{deleteFlag},
+        #{itemNo},
+        #{companyCode}
+        )
+	</insert>
+
+    <update id="update" parameterType="OrdDetailsEntity">
+        update ent_ord_details
+        <set>
+            <if test="serialNo != null">serial_no = #{serialNo},</if>
+            <if test="ordId != null">ord_id = #{ordId},</if>
+            <if test="packageTypeCode != null">package_type_code = #{packageTypeCode},</if>
+            <if test="packageId != null">package_id = #{packageId},</if>
+            <if test="packageName != null">package_name = #{packageName},</if>
+            <if test="outItemId != null">out_item_id = #{outItemId},</if>
+            <if test="bizDate != null">biz_date = #{bizDate},</if>
+            <if test="refundedAmount != null">refunded_amount = #{refundedAmount},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="floorPrice != null">floor_price = #{floorPrice},</if>
+            <if test="insuranceAmount != null">insurance_amount = #{insuranceAmount},</if>
+            <if test="trainingAmount != null">training_amount = #{trainingAmount},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="statusCode != null">status_code = #{statusCode},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="operatorId != null">operator_id = #{operatorId},</if>
+            <if test="deleteFlag != null">delete_flag = #{deleteFlag},</if>
+            <if test="itemNo != null">item_no = #{itemNo},</if>
+            <if test="companyCode != null">company_code = #{companyCode}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from ent_ord_details where id = #{id}
+	</delete>
+
+    <delete id="deleteBatchIds">
+        delete from ent_ord_details where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
