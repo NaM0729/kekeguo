@@ -10,23 +10,16 @@ import java.util.Calendar;
  */
 public class DateUtil {
 
-    private static final String[] week = new String[]{"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * 通过日期取星期
-     *
-     * @param str
+     * 计算日期date，输出num年后的日期
+     * 例：2018-11-10 第二个周六，推测num=1年后第二个周六是几日（1号是周六不记录周六日的统计）
+     * @param date
+     * @param num
      * @return
      * @throws ParseException
      */
-    public static String getWeek(String str) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dateFormat.parse(str));
-        return week[calendar.get(Calendar.DAY_OF_WEEK) - 1];
-    }
-
     public static String getYearAndNum(String date,int num) throws ParseException {
 
         while(num>0){
@@ -36,6 +29,13 @@ public class DateUtil {
         return date;
     }
 
+    /**
+     * 计算日期date，输出n下一年后的日期
+     * 例：2018-11-10 第二个周六，推测1年后第二个周六是几日（1号是周六不记录周六日的统计）
+     * @param date
+     * @return
+     * @throws ParseException
+     */
     public static String getDateNextYear(String date) throws ParseException {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(simpleDateFormat.parse(date));
@@ -55,6 +55,15 @@ public class DateUtil {
         return s;
     }
 
+    /**
+     * 计算日期
+     * @param year
+     * @param month
+     * @param weeknum
+     * @param weekround
+     * @return
+     * @throws ParseException
+     */
     private static String calculationDateNextYear(int year, int month, int weeknum, int weekround) throws ParseException {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);

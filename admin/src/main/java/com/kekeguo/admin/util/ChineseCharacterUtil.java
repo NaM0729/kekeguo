@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
  * @date 2018年11月05日17:11:35
  */
 public class ChineseCharacterUtil {
+
     /**
      *  获取汉字首字母或全拼大写字母
      *
@@ -118,6 +119,7 @@ public class ChineseCharacterUtil {
      * 测试方法
      */
     public static void main(String[] args) {
+
         System.out.println(convertHanzi2Pinyin("弗格森的广东省",false).toUpperCase());
     }
 }
