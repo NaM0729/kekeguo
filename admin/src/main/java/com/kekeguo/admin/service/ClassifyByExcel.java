@@ -68,9 +68,10 @@ public class ClassifyByExcel {
         String s1[] = this.split(str, one_Level);
         // 拆分一级
         if (s1.length > 0) {
+            int num = 1;
             for (int i = 0; i < s1.length; i++) {
                 if (!StringUtils.isEmpty(s1[i].trim())) {
-                    list1.add(i + "、" + s1[i].trim());
+                    list1.add((num++) + "、" + s1[i].trim());
                 }
             }
         }
@@ -91,6 +92,7 @@ public class ClassifyByExcel {
             list.add(map1);
         }
 
+        String splitThree[] = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯"};
 
         // 拆分三级
         List result = new ArrayList();
@@ -99,26 +101,28 @@ public class ClassifyByExcel {
             Map<String, Object> mapOne = new HashMap<>();
             List listTwo = new ArrayList();
             String stringHeader = String.valueOf(map2.get("header"));
-            String[] splitHeader = stringHeader.split("\\n");
+//            String[] splitHeader = stringHeader.split("\\n");
+            String[] splitHeader = stringHeader.split("[①,②,③,④,⑤,⑥,⑦,⑧,⑨,⑩,⑪,⑫,⑬,⑭,⑮,⑯]");
             Map<String, Object> mapTwo = new HashMap<>();
             if (splitHeader.length > 1) {
                 List listThree = new ArrayList();
+                int threeNum = 0;
                 for (int m = 1; m < splitHeader.length; m++) {
                     Map<String, Object> mapThree = new HashMap<>();
                     if (StringUtils.isEmpty(splitHeader[m].trim())) {
                         continue;
                     }
-                    mapThree.put("header", splitHeader[m].trim());
+                    mapThree.put("header", (splitThree[threeNum++]) + splitHeader[m].trim().replaceAll("\\n", ""));
                     listThree.add(mapThree);
                 }
                 mapTwo.put("header", "（1）");
                 mapTwo.put("option", listThree);
                 listTwo.add(mapTwo);
-                mapOne.put("header", splitHeader[0].trim());
+                mapOne.put("header", splitHeader[0].trim().replaceAll("\\n", ""));
                 mapOne.put("option", listTwo);
                 result.add(mapOne);
             } else {
-                mapOne.put("header", stringHeader);
+                mapOne.put("header", stringHeader.replaceAll("\\n", ""));
                 result.add(mapOne);
             }
             List listOption = (List) map2.get("option");
@@ -127,21 +131,23 @@ public class ClassifyByExcel {
                     Map<String, Object> mapThree = new HashMap<>();
                     List listThree = new ArrayList();
                     String data2 = (String) listOption.get(j);
-                    String[] split1 = data2.split("\\n");
+//                    String[] split1 = data2.split("\\n");
+                    String[] split1 = data2.split("[①,②,③,④,⑤,⑥,⑦,⑧,⑨,⑩,⑪,⑫,⑬,⑭,⑮,⑯]");
                     if (split1.length == 1) {
-                        mapThree.put("header", split1[0].trim());
+                        mapThree.put("header", split1[0].trim().replaceAll("\\n", ""));
                         mapThree.put("option", listThree);
                     }
                     if (split1.length > 1) {
+                        int threeNum = 0;
                         for (int k = 1; k < split1.length; k++) {
                             Map<String, String> map3 = new HashMap<>();
                             if (StringUtils.isEmpty(split1[k].trim())) {
                                 continue;
                             }
-                            map3.put("header", split1[k].trim());
+                            map3.put("header", (splitThree[threeNum++]) + split1[k].trim().replaceAll("\\n", ""));
                             listThree.add(map3);
                         }
-                        mapThree.put("header", split1[0].trim());
+                        mapThree.put("header", split1[0].trim().replaceAll("\\n", ""));
                         mapThree.put("option", listThree);
                     }
                     listTwo.add(mapThree);
@@ -156,35 +162,17 @@ public class ClassifyByExcel {
         ClassifyByExcel classifyByExcel = new ClassifyByExcel();
 //        classifyByExcel.ClassifyByCell();
 
-        String str = "" +
-                "1、资本一帝国主义列强对中国的侵略，首先和主要的是进行军事侵略\n" +
-                "\n" +
-                "2、第一次鸦片战争后\n" +
-                "（1）1842年8月，中英《南京条约（江宁条约）》（第一个不平等条约）\n" +
-                "\n" +
-                "①割让香港岛给英国\n" +
-                "\n" +
-                "②开放广州、厦门、福州、宁波、上海等港口城市作通商口岸\n" +
-                "\n" +
-                "③赔款2100万银元" +
-                "3、第二次鸦片战争后\n" +
-                "\n" +
-                "①割让香港岛给英国\n" +
-                "\n" +
-                "②开放广州、厦门、福州、宁波、上海等港口城市作通商口岸\n" +
-                "\n" +
-                "③赔款2100万银元" +
-                "4、第三次鸦片战争后\n" +
-                "\n" +
-                "①割让香港岛给英国\n" +
-                "（1）1842年8月，中英《南京条约（江宁条约）》（第一个不平等条约）\n" +
-                "\n" +
-                "①开放广州、厦门、福州、宁波、上海等港口城市作通商口岸\n" +
-                "\n" +
-                "③赔款2100万银元";
+//        String str = "1、经济全球化的本质：资源配置的国际化。" +
+//                "2、经济全球化的内容包括：生产全球化、贸易全球化、资本全球化。" +
+//                "（1）生产全球化。这是指随着科学技术的发展，一系列高精尖产品和工艺技术的出现、生产领域的国际分工和协作的加强、各国在生产上密切配合的趋势。" +
+//                "（2）贸易全球化。贸易全球化迅猛发展的主要原因是：首先，新科技革命中出现了很多新兴产业，\n" +
+//                "国际产业结构的变化、各国间产业分工的深化和产业在不同国家间的梯度转移。\n" +
+//                "①其次，新科技革命推动下的高效率、大批量生产，也要求在全球范围内开拓市场、扩大国际贸易规模。\n" +
+//                "②再次，随着生产水平的提高，人们的生活水平也普遍提高了，对各国产品的需求也相应增加，这又从一个侧面促进了贸易的全球化。" +
+//                "（3）资本全球化。近二三十年来，在新科技革命的推动下，资本在国际间的流动以前所未有的速度增加，形成了资本全球化趋势。";
+        String str="一切从实际出发，是思想路线的前提和基础。 理论联系实际，是思想路线的途径和方法。实事求是，是党的思想路线的实质和核心。在实践中检验真理和发展真理，是思想路线验证的条件和目的。";
 
         List list = classifyByExcel.groupBy(str);
-
-        System.out.println("success");
+        System.out.println(list);
     }
 }
