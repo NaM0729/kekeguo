@@ -5,13 +5,10 @@ import com.kekeguo.admin.excel.ReadExcelUtil;
 import com.kekeguo.admin.util.LamdbaUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -31,7 +28,7 @@ public class ClassifyByExcel {
         String path = "/Users/admin/Documents/TestImportExcel/ClassifyByExcel.xls";
 
         Workbook workbook = ReadExcelUtil.creatWorkbook(path);
-        List<Map> lists = ReadExcelUtil.getDatasAndRow(null, 1, workbook);
+        List<Map> lists = ReadExcelUtil.getDatasBySheetName(workbook, 1 ,null);
         // 以知识点编号去重
         List<Map> listDistinct = lists.stream().filter(LamdbaUtil.distinctByKey(map -> map.get("知识点编号"))).collect(Collectors.toList());
         String pat1 = "\\d+\\、";

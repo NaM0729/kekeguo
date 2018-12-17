@@ -7,13 +7,13 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Filter;
 
 /**
  * @author zhangyuna
@@ -26,18 +26,94 @@ public class ReadExcelUtil {
     public static final String XLSX_TAB = ".xlsx";
     public static final String XLS_TAB = ".xls";
 
-    public static void readMemory(){
-        logger.info("总内存:"+Runtime.getRuntime().totalMemory()/1024/1024+"MB");
-        logger.info("剩余内存:"+Runtime.getRuntime().freeMemory()/1024/1024+"MB");
-        logger.info("最大内存:"+Runtime.getRuntime().maxMemory()/1024/1024+"MB");
+    public static void readMemory() {
+        logger.info("总内存:" + Runtime.getRuntime().totalMemory() / 1024 / 1024 + "MB");
+        logger.info("剩余内存:" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "MB");
+        logger.info("最大内存:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "MB");
     }
 
     /**
+     * 读取指定sheet页中的信息
+     *
+     * @return
+     * @throws IOException
+     */
+    public static Sheet getSheetBySheetName(Workbook workbook, String sheetName) {
+        if (StringUtils.isEmpty(sheetName) || ObjectUtils.isEmpty(workbook)) {
+            return null;
+        }
+        logger.info("getSheetList");
+        Map<String, Object> map = new HashMap<>();
+        for (int sheetIndex = 0; sheetIndex < workbook.getNumberOfSheets(); sheetIndex++) {
+            Sheet sheetAt = workbook.getSheetAt(sheetIndex);
+            if (sheetName.equals(sheetAt.getSheetName())) {
+                return sheetAt;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 读取每个sheet页的数据
+     *
+     * @param sheetAt
+     * @param ignoreRows
+     * @return
+     */
+    private static List<Map> getDatasBySheet(Workbook workbook, int ignoreRows, Sheet sheetAt) {
+        readMemory();
+        logger.info("开始读excel");
+        long start = System.currentTimeMillis();
+        if (sheetAt == null) {
+            sheetAt = workbook.getSheetAt(0);
+        }
+        List<Map> objectList = new ArrayList<>();
+        int rowSize = 0;
+        // 第一行为标题，不取
+        Row rowOne = sheetAt.getRow(0);
+        int rowNum = sheetAt.getLastRowNum();
+        for (int rowIndex = ignoreRows; rowIndex <= rowNum; rowIndex++) {
+            Map<String, Object> mapRow = new HashMap<>();
+            Row row = sheetAt.getRow(rowIndex);   //取行信息
+            if (StringUtils.isEmpty(row)) {
+                continue;
+            }
+            int tempRowSize = row.getLastCellNum() + 1;
+            if (tempRowSize > rowSize) {
+                rowSize = tempRowSize;
+            }
+            short cellNum = row.getLastCellNum();
+            for (short columnIndex = 0; columnIndex <= cellNum; columnIndex++) {
+                Cell cell = row.getCell(columnIndex);
+                if (cell != null) {
+                    mapRow.put(String.valueOf(rowOne.getCell(columnIndex)), getCellValue(cell));
+                }
+            }
+            objectList.add(mapRow);
+        }
+        logger.info("读取excel完成！耗时：" + (System.currentTimeMillis() - start));
+        return objectList;
+    }
+
+    /**
+     * 通过sheet名称获取该页的数据
+     * @param workbook
+     * @param ignoreRows
+     * @param sheetName
+     * @return
+     */
+    public static List<Map> getDatasBySheetName(Workbook workbook, int ignoreRows, String sheetName) {
+        Sheet sheet = getSheetBySheetName(workbook, sheetName);
+        return getDatasBySheet(workbook, ignoreRows, sheet);
+    }
+
+    /**
+     * 获取excel中所有数据
      * @param ignoreRows 读取数据忽略的行数，比喻行头不需要读入 忽略的行数为1
      * @return
      * @throws IOException
      */
-    public static Map<String, Object> getDatasAndSheet(Workbook workbook, int ignoreRows) throws IOException, InvalidFormatException {
+    public static Map<String, Object> getDatasAll(Workbook workbook, int ignoreRows) {
         readMemory();
         logger.info("开始读excel");
         long start = System.currentTimeMillis();
@@ -45,11 +121,12 @@ public class ReadExcelUtil {
         for (int sheetIndex = 0; sheetIndex < workbook.getNumberOfSheets(); sheetIndex++) {
             Sheet sheetAt = workbook.getSheetAt(sheetIndex);  //取sheet页
             String sheetName = sheetAt.getSheetName();
-            map.put(sheetName, getDatasAndRow(sheetAt, ignoreRows, workbook));
+            map.put(sheetName, getDatasBySheet(workbook, ignoreRows, sheetAt));
         }
-        logger.info("读取excel完成！耗时：" + (System.currentTimeMillis()-start));
+        logger.info("读取excel完成！耗时：" + (System.currentTimeMillis() - start));
         return map;
     }
+
 
     /**
      * .rowCacheSize(100)  //缓存到内存中的行数，默认是10
@@ -59,7 +136,7 @@ public class ReadExcelUtil {
      * @param file
      * @throws FileNotFoundException
      */
-    public static Map<String, Object> getDatasAndSheetBig(File file) throws FileNotFoundException {
+    public static Map<String, Object> getLargeData (File file) throws FileNotFoundException {
         readMemory();
         logger.info("开始读excel");
         long start = System.currentTimeMillis();
@@ -91,54 +168,11 @@ public class ReadExcelUtil {
     }
 
     /**
-     * 读取每个sheet页的数据
-     *
-     * @param sheetAt
-     * @param ignoreRows
-     * @return
-     */
-    public static List<Map> getDatasAndRow(Sheet sheetAt, int ignoreRows, Workbook workbook) {
-        readMemory();
-        logger.info("开始读excel");
-        long start = System.currentTimeMillis();
-        if (sheetAt == null) {
-            sheetAt = workbook.getSheetAt(0);
-        }
-        List<Map> objectList = new ArrayList<>();
-        int rowSize = 0;
-        // 第一行为标题，不取
-        Row rowOne = sheetAt.getRow(0);
-        int rowNum = sheetAt.getLastRowNum();
-        for (int rowIndex = ignoreRows; rowIndex <= rowNum; rowIndex++) {
-            Map<String, Object> mapRow = new HashMap<>();
-            Row row = sheetAt.getRow(rowIndex);   //取行信息
-            if (StringUtils.isEmpty(row)) {
-                continue;
-            }
-            int tempRowSize = row.getLastCellNum() + 1;
-            if (tempRowSize > rowSize) {
-                rowSize = tempRowSize;
-            }
-            short cellNum = row.getLastCellNum();
-            for (short columnIndex = 0; columnIndex <= cellNum; columnIndex++) {
-                Cell cell = row.getCell(columnIndex);
-                if (cell != null) {
-                    mapRow.put(String.valueOf(rowOne.getCell(columnIndex)), getCellValue(cell));
-                }
-            }
-            objectList.add(mapRow);
-        }
-        logger.info("读取excel完成！耗时：" + (System.currentTimeMillis()-start));
-        return objectList;
-    }
-
-    /**
      * 另外如果日期中有精确到日，精确到秒不同精度的，可以用cell.getCellStyle().getDataFormat()或cell.getCellStyle().getDataFormatString()来获取格式。
      *
      * @param cell
      * @return
      */
-    //获取xlsx单元格数据
     public static String getCellValue(Cell cell) {
         String cellValue = "";
         if (cell == null) {
@@ -151,8 +185,10 @@ public class ReadExcelUtil {
                 if (DateUtil.isCellDateFormatted(cell)) {
                     cellValue = simpleDateFormat.format(cell.getDateCellValue());
                 } else {
-                    DecimalFormat df = new DecimalFormat("0");
-                    cellValue = df.format(cell.getNumericCellValue());
+//                    // 取一位整数
+//                    DecimalFormat df = new DecimalFormat("0");
+//                    cellValue = df.format(cell.getNumericCellValue());
+                    cellValue = String.valueOf(cell.getNumericCellValue());
                 }
                 break;
             case Cell.CELL_TYPE_STRING: //字符串
@@ -177,22 +213,28 @@ public class ReadExcelUtil {
         return cellValue;
     }
 
+    /**
+     * 获取Workbook
+     * @param filePath
+     * @return
+     * @throws IOException
+     */
     public static Workbook creatWorkbook(String filePath) throws IOException {
         Workbook book = null;
         InputStream is = null;
         try {
             is = new FileInputStream(filePath);
-            if(filePath.endsWith(XLS_TAB)) {
+            if (filePath.endsWith(XLS_TAB)) {
                 book = new HSSFWorkbook(is);
-            }else if(filePath.endsWith(XLSX_TAB)) {
+            } else if (filePath.endsWith(XLSX_TAB)) {
                 book = new XSSFWorkbook(is);
-            }else {
+            } else {
                 return null;
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(is!=null) {
+        } finally {
+            if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
@@ -203,22 +245,23 @@ public class ReadExcelUtil {
         }
         return book;
     }
+
     public static Workbook creatWorkbook(File file) throws IOException {
         Workbook book = null;
         InputStream is = null;
         try {
             is = new FileInputStream(file);
-            if(file.getName().endsWith(XLS_TAB)) {
+            if (file.getName().endsWith(XLS_TAB)) {
                 book = new HSSFWorkbook(is);
-            }else if(file.getName().endsWith(XLSX_TAB)) {
+            } else if (file.getName().endsWith(XLSX_TAB)) {
                 book = new XSSFWorkbook(is);
-            }else {
+            } else {
                 return null;
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(is!=null) {
+        } finally {
+            if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {

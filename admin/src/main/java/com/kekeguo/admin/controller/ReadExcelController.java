@@ -77,7 +77,7 @@ public class ReadExcelController {
             book = null;
             return DataResult.error("请上传Excel文件");
         }
-        Map<String, Object> datas = ReadExcelUtil.getDatasAndSheet(book, 1);
+        Map<String, Object> datas = ReadExcelUtil.getDatasAll(book, 1);
         System.out.println(datas);
         return DataResult.success("读取完成");
     }
